@@ -16,6 +16,7 @@ while running:
             running = False
 
     screen.fill("light blue")
+    # my_image = pygame.image.load("RatRightSprite")
 
     pygame.draw.circle(screen, "red", player_pos, 40)
 
@@ -29,12 +30,8 @@ while running:
     if keys[pygame.K_d]:
         player_pos.x += 600 * dt
 
-    # flip() the display to put your work on screen
     pygame.display.flip()
 
-    # limits FPS to 60
-    # dt is delta time in seconds since last frame, used for framerate-
-    # independent physics.
     dt = clock.tick(60) / 1000
 
 pygame.quit()
