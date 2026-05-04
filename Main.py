@@ -8,6 +8,7 @@ running = True
 dt = 1
 gridw = 12
 gridh = 6
+sprint = 1
 
 grid = [[0 for _ in range(gridw)] for _ in range(gridh)]
 
@@ -62,7 +63,7 @@ while running:
         player_pos.y -= 600 * dt
         p1_x = player_pos.x
         p1_y = player_pos.y
-        p2_x = p1_x + my_image.width
+        p2_x = p1_x + my_image.get_width()
         p2_y = p1_y
         img_rotation = 90
         img_flip = False
@@ -70,8 +71,8 @@ while running:
     elif keys[pygame.K_s]:
         player_pos.y += 600 * dt
         p1_x = player_pos.x
-        p1_y = player_pos.y + my_image.height
-        p2_x = p1_x + my_image.width
+        p1_y = player_pos.y + my_image.get_height()
+        p2_x = p1_x + my_image.get_width()
         p2_y = p1_y 
         img_rotation = 270
         img_flip = False
@@ -81,22 +82,25 @@ while running:
         p1_x = player_pos.x
         p1_y = player_pos.y
         p2_x = p1_x 
-        p2_y = p1_y + my_image.height
+        p2_y = p1_y + my_image.get_height()
         img_rotation = 0
         img_flip = True
 
     elif keys[pygame.K_d]:
         player_pos.x += 600 * dt 
-        p1_x = player_pos.x + my_image.width
+        p1_x = player_pos.x + my_image.get_width()
         p1_y = player_pos.y
         p2_x = p1_x     
-        p2_y = p1_y + my_image.height
+        p2_y = p1_y + my_image.get_height()
         img_rotation = 0
         img_flip = False
 
+    elif keys[pygame.K_r]:
+         sprint = 2
 
     else:
         pressed = False
+        sprint = 1
 
     if (pressed == True):
         gridx1 = int(p1_x / cellw)
@@ -125,6 +129,6 @@ while running:
 
     pygame.display.flip()
 
-    dt = clock.tick(60) / 1000
+    dt = clock.tick(60) / 1000 * sprint
 
 pygame.quit()
