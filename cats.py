@@ -54,9 +54,12 @@ while running:
         walk = 0
     else:
         walk += 1
+    
     stand_animation = pygame.transform.rotate(stand_animation, img_rotation)
+    walk_animation = pygame.transform.rotate(walk_animation, img_rotation)
     if (img_flip == True): 
         stand_animation = pygame.transform.flip(stand_animation, True, False)
+        walk_animation = pygame.transform.flip(walk_animation, True, False)
 
     for x in range (gridw):
         for y in range (gridh):
