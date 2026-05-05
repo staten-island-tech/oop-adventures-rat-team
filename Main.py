@@ -112,11 +112,13 @@ while running:
         print(gridx1, gridy1)
 
         if (gridy1 < 0 or gridy1 >= gridh 
-            or gridx1 < 0 or gridx1 >= gridw
-            or gridy2 < 0 or gridy2 >= gridh 
-            or gridx2 < 0 or gridx2 >= gridw
+            or gridx1-1 < 0 or gridx1 >= gridw
+            or gridy2-1 < 0 or gridy2 >= gridh -1
+            or gridx2-1 < 0 or gridx2 >= gridw
             ):
+            item = 1
             print("outside")
+            
             player_pos.x = orig_x
             player_pos.y = orig_y
         else:
