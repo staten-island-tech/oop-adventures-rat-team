@@ -6,8 +6,8 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 dt = 1
-gridw = 12
-gridh = 6
+gridw = 18
+gridh = 9
 sprint = 1
 
 grid = [[0 for _ in range(gridw)] for _ in range(gridh)]
@@ -46,6 +46,7 @@ while running:
 
     # pygame.draw.circle(screen, "red", player_pos, 40)
     screen.blit(my_image, player_pos)
+    my_image = pygame.transform.scale(my_image, (60, 80))
 
     keys = pygame.key.get_pressed()
  
@@ -109,12 +110,17 @@ while running:
         gridx2 = int(p2_x / cellw)
         gridy2 = int(p2_y / cellh)
 
+        gridx3 = int(p2_x / cellw)
+        gridy3 = int(p2_y / cellh)
+
+
+
         print(gridx1, gridy1)
 
         if (gridy1 < 0 or gridy1 >= gridh 
             or gridx1-1 < 0 or gridx1 >= gridw
-            or gridy2-1 < 0 or gridy2 >= gridh -1
-            or gridx2-1 < 0 or gridx2 >= gridw
+            or gridy2-1 < 0 or gridy2 >= gridh -2
+            or gridx2-1 < 0 or gridx2 >= gridw -2
             ):
             item = 1
             print("outside")
@@ -124,7 +130,8 @@ while running:
         else:
             item1 = grid[gridy1][gridx1]
             item2 = grid[gridy2][gridx2]
-            if (item1 == 1 or item2 == 1): #wall
+            item3 = grid[gridy3][gridx3]
+            if (item1 == 1 or item2 == 1 or item2 == 1): #wall
                 print("wall")
                 player_pos.x = orig_x
                 player_pos.y = orig_y
