@@ -60,7 +60,7 @@ while running:
 
     pressed = True
     if keys[pygame.K_w]:
-        print(keys)
+        # print(keys)
         player_pos.y -= 600 * dt
         p1_x = player_pos.x
         p1_y = player_pos.y
