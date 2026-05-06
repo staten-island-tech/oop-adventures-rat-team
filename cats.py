@@ -40,6 +40,7 @@ walks = ["walk1", "walk2", "walk3", "walk4", "walk5", "walk6"]
 walk = 0
 standing = True
 walking = False
+animate = 1
 while running:
 
     for event in pygame.event.get():
@@ -49,11 +50,14 @@ while running:
     screen.fill("black")
     stand_animation = pygame.image.load(f"stand.png")
     walk_animation = pygame.image.load(f"{walks[walk]}.png")
-    
-    if walk == 5:
-        walk = 0
-    else:
-        walk += 1
+    if animate == 1:
+        animate += 0.5
+        if walk == 5:
+            walk = 0
+        else:
+            walk += 1
+    elif animate == 3:
+        animate = 1
     
     stand_animation = pygame.transform.rotate(stand_animation, img_rotation)
     walk_animation = pygame.transform.rotate(walk_animation, img_rotation)
@@ -89,7 +93,7 @@ while running:
 
     pressed = True
     if keys[pygame.K_w]:
-        print(keys)
+        # print(keys)
         player_pos.y -= 600 * dt
         p1_x = player_pos.x
         p1_y = player_pos.y
