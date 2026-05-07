@@ -23,7 +23,7 @@ cellh = (screen.get_height() / gridh)
 img_rotation = 0
 img_flip = False
 while running:
-
+#    print(player_pos)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -45,8 +45,10 @@ while running:
                 pygame.draw.rect(screen, 'red', (xpos, ypos, cellw-2, cellh-2))
 
     # pygame.draw.circle(screen, "red", player_pos, 40)
-    screen.blit(my_image, player_pos)
-    my_image = pygame.transform.scale(my_image, (60, 80))
+    screen.blit(my_image, (player_pos.x - my_image.width/2, player_pos.y - my_image.height/2))
+#    my_image = pygame.transform.scale(my_image, (60, 80))
+    hw = my_image.width/2
+    hh = my_image.height/2
 
     keys = pygame.key.get_pressed()
  
@@ -62,37 +64,37 @@ while running:
     if keys[pygame.K_w]:
         # print(keys)
         player_pos.y -= 600 * dt
-        p1_x = player_pos.x
-        p1_y = player_pos.y
-        p2_x = p1_x + my_image.get_width()
-        p2_y = p1_y
+        p1_x = player_pos.x - hw
+        p1_y = player_pos.y - hh
+        p2_x = p1_x + hw
+        p2_y = p1_y - hh
         img_rotation = 90
         img_flip = False
 
     elif keys[pygame.K_s]:
         player_pos.y += 600 * dt
-        p1_x = player_pos.x
-        p1_y = player_pos.y + my_image.get_height()
-        p2_x = p1_x + my_image.get_width()
-        p2_y = p1_y 
+        p1_x = player_pos.x - hw
+        p1_y = player_pos.y + hh
+        p2_x = p1_x + hw
+        p2_y = p1_y + hh
         img_rotation = 270
         img_flip = False
 
     elif keys[pygame.K_a]:
         player_pos.x -= 600 * dt 
-        p1_x = player_pos.x
-        p1_y = player_pos.y
-        p2_x = p1_x 
-        p2_y = p1_y + my_image.get_height()
+        p1_x = player_pos.x - hw
+        p1_y = player_pos.y - hh 
+        p2_x = p1_x - hw
+        p2_y = p1_y + hh
         img_rotation = 0
         img_flip = True
 
     elif keys[pygame.K_d]:
         player_pos.x += 600 * dt 
-        p1_x = player_pos.x + my_image.get_width()
-        p1_y = player_pos.y
-        p2_x = p1_x     
-        p2_y = p1_y + my_image.get_height()
+        p1_x = player_pos.x + hw
+        p1_y = player_pos.y - hh
+        p2_x = p1_x + hw     
+        p2_y = p1_y + hh
         img_rotation = 0
         img_flip = False
 
@@ -118,9 +120,12 @@ while running:
         print(gridx1, gridy1)
 
         if (gridy1 < 0 or gridy1 >= gridh 
-            or gridx1-1 < 0 or gridx1 >= gridw
-            or gridy2-1 < 0 or gridy2 >= gridh -2
-            or gridx2-1 < 0 or gridx2 >= gridw -2
+         #   or gridx1-1 < 0 or gridx1 >= gridw
+          #  or gridy2-1 < 0 or gridy2 >= gridh -2
+           # or gridx2-1 < 0 or gridx2 >= gridw -2
+            or gridx1 < 0 or gridx1 >= gridw
+            or gridy2 < 0 or gridy2 >= gridh 
+            or gridx2 < 0 or gridx2 >= gridw 
             ):
             item = 1
             print("outside")
