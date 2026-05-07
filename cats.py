@@ -17,82 +17,36 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
-dt = 1
-gridw = 12
-gridh = 6
-sprint = 1
+dt = 0
 
-grid = [[0 for _ in range(gridw)] for _ in range(gridh)]
+player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 
-grid[4][3] = 1
-
-print(grid)
-player_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
-
-cellw = (screen.get_width() / gridw)
-cellh = (screen.get_height() / gridh)
-
-img_rotation = 0
-img_flip = False
-animations = ["attack1", "attack2", "attack3", "attack4", "attack5", "attack6", "hurt1", "hurt2", "hurt3", "hurt4", "stand", "walk1", "walk2", "walk3", "walk4", "walk5", "walk6"]
-walks = ["walk1", "walk2", "walk3", "walk4", "walk5", "walk6"]
-# animation = 0
-walk = 0
-standing = True
-walking = False
-animate = 1
-visible = False
 while running:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill("black")
-    stand_animation = pygame.image.load(f"stand.png")
-    walk_animation = pygame.image.load(f"{walks[walk]}.png")
-    if animate == 1:
-        animate += 0.5
-        if walk == 5:
-            walk = 0
-        else:
-            walk += 1
-    elif animate == 3:
-        animate = 1
-    
-    stand_animation = pygame.transform.rotate(stand_animation, img_rotation)
-    walk_animation = pygame.transform.rotate(walk_animation, img_rotation)
-    if (img_flip == True): 
-        stand_animation = pygame.transform.flip(stand_animation, True, False)
-        walk_animation = pygame.transform.flip(walk_animation, True, False)
+    screen.fill("light blue")
 
-    for x in range (gridw):
-        for y in range (gridh):
-            xpos = cellw * x
-            ypos = cellh * y
-            item = grid [y][x]
-            if item == 0:  #empty
-                pygame.draw.rect(screen, 'light blue', (xpos, ypos, cellw-2, cellh-2))
-            if item == 1:  #wall
-                pygame.draw.rect(screen, 'red', (xpos, ypos, cellw-2, cellh-2))
+    pygame.draw.circle(screen, "red", player_pos, 40)
 
-    # pygame.draw.circle(screen, "red", player_pos, 40)
-    
     keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        player_pos.y -= 600 * dt
+    if keys[pygame.K_s]:
+        player_pos.y += 600 * dt
+    if keys[pygame.K_a]:
+        player_pos.x -= 600 * dt
+    if keys[pygame.K_d]:
+        player_pos.x += 600 * dt
 
-    if keys[pygame.K_e]:
-        visible = True
-
-    if standing == True and visible == True:
-        screen.blit(stand_animation, player_pos)
-    elif visible == True:
-        screen.blit(walk_animation, player_pos)
- 
-    orig_x = player_pos.x
-    orig_y = player_pos.y
-
+    # flip() the display to put your work on screen
     pygame.display.flip()
 
-    dt = clock.tick(60) / 1000 * sprint
+    # limits FPS to 60
+    # dt is delta time in seconds since last frame, used for framerate-
+    # independent physics.
+    dt = clock.tick(60) / 1000
 
 pygame.quit()
