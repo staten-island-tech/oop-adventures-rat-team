@@ -27,7 +27,7 @@ grid = [[0 for _ in range(gridw)] for _ in range(gridh)]
 grid[4][3] = 1
 
 print(grid)
-player_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
+cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
 
 cellw = (screen.get_width() / gridw)
 cellh = (screen.get_height() / gridh)
@@ -76,7 +76,7 @@ while running:
             if item == 1:  #wall
                 pygame.draw.rect(screen, 'red', (xpos, ypos, cellw-2, cellh-2))
 
-    # pygame.draw.circle(screen, "red", player_pos, 40)
+    # pygame.draw.circle(screen, "red", cat_pos, 40)
     
     keys = pygame.key.get_pressed()
 
@@ -84,13 +84,25 @@ while running:
         visible = True
 
     if standing == True and visible == True:
-        screen.blit(stand_animation, player_pos)
+        screen.blit(stand_animation, cat_pos)
     elif visible == True:
-        screen.blit(walk_animation, player_pos)
+        screen.blit(walk_animation, cat_pos)
  
-    orig_x = player_pos.x
-    orig_y = player_pos.y
+    orig_x = cat_pos.x
+    orig_y = cat_pos.y
 
+    if visible == True:
+        if cat_pos.x < player_pos.x:
+            cat_pos.x += 1
+        elif cat_pos.x > player_pos.x:
+            cat_pos.x -= 1
+
+        if cat_pos.y < player_pos.y:
+            cat_pos.y += 1
+        elif cat_pos.y > player_pos.y:
+            cat_pos.y -= 1
+
+    
     pygame.display.flip()
 
     dt = clock.tick(60) / 1000 * sprint
