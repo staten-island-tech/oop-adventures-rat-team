@@ -1,5 +1,6 @@
 import random
 import pygame
+from Main import player_pos
 
 class cat:
     def __init__(self, health, power, speed):
@@ -51,7 +52,7 @@ while cat_running:
 
     screen.fill("black")
     stand_animation = pygame.image.load(f"stand.png")
-    walk_animation = pygame.image.load(f"{cat_walks[walk]}.png")
+    walk_animation = pygame.image.load(f"{cat_walks[cat_walk]}.png")
     if cat_animate == 1:
         cat_animate += 0.5
         if cat_walk == 5:

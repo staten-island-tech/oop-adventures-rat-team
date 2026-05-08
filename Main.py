@@ -1,4 +1,5 @@
 import pygame
+from cats import *
 
 # pygame setup
 pygame.init()
