@@ -24,15 +24,7 @@ cat_gridw = 12
 cat_gridh = 6
 cat_sprint = 1
 
-cat_grid = [[0 for _ in range(cat_gridw)] for _ in range(cat_gridh)]
-
-cat_grid[4][3] = 1
-
-print(cat_grid)
 cat_pos = pygame.Vector2(cat_screen.get_width() / 30, cat_screen.get_height() / 2)
-
-cat_cellw = (cat_screen.get_width() / cat_gridw)
-cat_cellh = (cat_screen.get_height() / cat_gridh)
 
 cat_rotation = 0
 cat_flip = False
@@ -67,16 +59,6 @@ while cat_running:
     if (cat_flip == True): 
         cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
         cat_walk_animation = pygame.transform.flip(cat_walk_animation, True, False)
-
-    for x in range (cat_gridw):
-        for y in range (cat_gridh):
-            xpos = cat_cellw * x
-            ypos = cat_cellh * y
-            item = cat_grid [y][x]
-            if item == 0:  #empty
-                pygame.draw.rect(cat_screen, 'light blue', (xpos, ypos, cat_cellw-2, cat_cellh-2))
-            if item == 1:  #wall
-                pygame.draw.rect(cat_screen, 'red', (xpos, ypos, cat_cellw-2, cat_cellh-2))
 
     # pygame.draw.circle(cat_screen, "red", cat_pos, 40)
     
