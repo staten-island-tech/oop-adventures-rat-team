@@ -98,7 +98,7 @@ while running:
         img_rotation = 0
         img_flip = False
 
-    elif keys[pygame.K_r]:
+    elif keys[pygame.K_LSHIFT]:
          sprint = 2
 
     else:
