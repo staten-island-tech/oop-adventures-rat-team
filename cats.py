@@ -1,6 +1,5 @@
 import random
 import pygame
-from Main import player_pos
 
 class cat:
     def __init__(self, health, power, speed):
@@ -45,14 +44,7 @@ while cat_running:
     cat_screen.fill("black")
     cat_stand_animation = pygame.image.load(f"stand.png")
     cat_walk_animation = pygame.image.load(f"{cat_walks[cat_walk]}.png")
-    if cat_animate == 1:
-        cat_animate += 0.5
-        if cat_walk == 5:
-            cat_walk = 0
-        else:
-            cat_walk += 1
-    elif cat_animate == 3:
-        cat_animate = 1
+
     
     cat_stand_animation = pygame.transform.rotate(cat_stand_animation, cat_rotation)
     cat_walk_animation = pygame.transform.rotate(cat_walk_animation, cat_rotation)
@@ -77,14 +69,34 @@ while cat_running:
 
     if cat_visible == True:
         if cat_pos.x < player_pos.x:
-            cat_pos.x += 1
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
+            cat_pos.x += 2
         elif cat_pos.x > player_pos.x:
-            cat_pos.x -= 1
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
+            cat_pos.x -= 2
 
         if cat_pos.y < player_pos.y:
-            cat_pos.y += 1
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
+            cat_pos.y += 2
         elif cat_pos.y > player_pos.y:
-            cat_pos.y -= 1
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
+            cat_pos.y -= 2
+        if cat_pos.x == player_pos.x and cat_pos.y == player_pos.y:
+            cat_standing = True
+        else:
+            cat_standing = False
 
     
     pygame.display.flip()
