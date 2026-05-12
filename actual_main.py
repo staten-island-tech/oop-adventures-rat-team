@@ -94,7 +94,7 @@ while running:
     elif cat_visible == True:
         screen.blit(cat_walk_animation, cat_pos)
 
-    pygame.draw.circle(screen, "red", player_pos, 40)
+    # pygame.draw.circle(screen, "red", player_pos, 40)
     screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
 #    my_image = pygame.transform.scale(my_image, (60, 80))
     hw = my_image.get_width()/2
@@ -194,14 +194,34 @@ while running:
                 player_pos.y = orig_y
     if cat_visible == True:
         if cat_pos.x < player_pos.x:
-                cat_pos.x += 2
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
+            cat_pos.x += 2
         elif cat_pos.x > player_pos.x:
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
             cat_pos.x -= 2
 
         if cat_pos.y < player_pos.y:
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
             cat_pos.y += 2
         elif cat_pos.y > player_pos.y:
+            if cat_walk != 5:
+                cat_walk += 1
+            else:
+                cat_walk = 0
             cat_pos.y -= 2
+        if cat_pos.x ==  cat_pos.x and cat_pos.y == cat_pos.y:
+            cat_standing = True
+        else:
+            cat_standing = False
     pygame.display.flip()
 
     dt = clock.tick(60) / 1000 * sprint
