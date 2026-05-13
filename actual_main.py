@@ -260,3 +260,4 @@ while running:
     cat_dt = cat_clock.tick(60) / 1000 * cat_sprint
 
 pygame.quit()
+# fix rotations and the rat moving faster when going diagonal because of the walk break adding up multiple times
