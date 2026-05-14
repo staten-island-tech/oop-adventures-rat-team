@@ -55,6 +55,7 @@ cat_animate = 1
 cat_visible = False
 cat_stand_maybe = 1
 walk_break = 0
+walk_break_check = False
 
 while running:
 #    print(player_pos)
@@ -194,6 +195,7 @@ while running:
                 print("wall")
                 player_pos.x = orig_x
                 player_pos.y = orig_y
+    walk_break_check = False
     if cat_visible == True:
         if cat_pos.x < player_pos.x:
             if walk_break == 0:
@@ -207,7 +209,9 @@ while running:
             if walk_break == 3:
                 walk_break = 0
             else:
-                walk_break += 1
+                if walk_break_check == False:
+                    walk_break += 1
+                    walk_break_check = True
         elif cat_pos.x > player_pos.x:
             if walk_break == 0:
                 if cat_walk != 5:
@@ -220,7 +224,9 @@ while running:
             if walk_break == 3:
                 walk_break = 0
             else:
-                walk_break += 1
+                if walk_break_check == False:
+                    walk_break += 1
+                    walk_break_check = True
         else:
             cat_stand_maybe = 1
 
@@ -236,7 +242,9 @@ while running:
             if walk_break == 3:
                 walk_break = 0
             else:
-                walk_break += 1
+                if walk_break_check == False:
+                    walk_break += 1
+                    walk_break_check = True
 
         elif cat_pos.y > player_pos.y:
             if walk_break == 0:
@@ -250,7 +258,9 @@ while running:
             if walk_break == 3:
                 walk_break = 0
             else:
-                walk_break += 1
+                if walk_break_check == False:
+                    walk_break += 1
+                    walk_break_check = True
         else:
             if cat_stand_maybe == 1:
                 cat_standing = True
