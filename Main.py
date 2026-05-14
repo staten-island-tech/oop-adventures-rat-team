@@ -61,6 +61,8 @@ while running:
     p2_y = 0
 
     pressed = True
+    keys = pygame.key.get_pressed()
+    
     if keys[pygame.K_w]:
         # print(keys)
         player_pos.y -= 600 * dt
@@ -71,7 +73,7 @@ while running:
         img_rotation = 90
         img_flip = False
 
-    elif keys[pygame.K_s]:
+    if keys[pygame.K_s]:
         player_pos.y += 600 * dt
         p1_x = player_pos.x - hw
         p1_y = player_pos.y + hh
@@ -80,7 +82,7 @@ while running:
         img_rotation = 270
         img_flip = False
 
-    elif keys[pygame.K_a]:
+    if keys[pygame.K_a]:
         player_pos.x -= 600 * dt 
         p1_x = player_pos.x - hw
         p1_y = player_pos.y - hh 
@@ -89,7 +91,7 @@ while running:
         img_rotation = 0
         img_flip = True
 
-    elif keys[pygame.K_d]:
+    if keys[pygame.K_d]:
         player_pos.x += 600 * dt 
         p1_x = player_pos.x + hw
         p1_y = player_pos.y - hh
@@ -97,9 +99,11 @@ while running:
         p2_y = p1_y + hh
         img_rotation = 0
         img_flip = False
+        
 
-    elif keys[pygame.K_LSHIFT]:
+    if keys[pygame.K_LSHIFT]:
          sprint = 2
+
 
     else:
         pressed = False
@@ -114,7 +118,6 @@ while running:
 
         gridx3 = int(p2_x / cellw)
         gridy3 = int(p2_y / cellh)
-
 
 
         print(gridx1, gridy1)
