@@ -206,10 +206,11 @@ while running:
             cat_pos.x += 2
             cat_standing = False
             cat_stand_maybe = 0
-            if walk_break == 3:
-                walk_break = 0
-            else:
-                if walk_break_check == False:
+            if walk_break_check == False:
+                if walk_break == 3:
+                    walk_break = 0
+                    walk_break_check = True
+                else:
                     walk_break += 1
                     walk_break_check = True
         elif cat_pos.x > player_pos.x:
@@ -221,10 +222,11 @@ while running:
             cat_pos.x -= 2
             cat_standing = False
             cat_stand_maybe = 0
-            if walk_break == 3:
-                walk_break = 0
-            else:
-                if walk_break_check == False:
+            if walk_break_check == False:
+                if walk_break == 3:
+                    walk_break = 0
+                    walk_break_check = True
+                else:
                     walk_break += 1
                     walk_break_check = True
         else:
@@ -255,10 +257,11 @@ while running:
             cat_pos.y -= 2
             cat_standing = False
             cat_stand_maybe = 0
-            if walk_break == 3:
-                walk_break = 0
-            else:
-                if walk_break_check == False:
+            if walk_break_check == False:
+                if walk_break == 3:
+                    walk_break = 0
+                    walk_break_check = True
+                else:
                     walk_break += 1
                     walk_break_check = True
         else:
