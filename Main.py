@@ -60,7 +60,7 @@ while running:
     p2_x = 0
     p2_y = 0
 
-    pressed = True
+    pressed = False
     keys = pygame.key.get_pressed()
     
     if keys[pygame.K_w]:
@@ -72,6 +72,7 @@ while running:
         p2_y = p1_y - hh
         img_rotation = 90
         img_flip = False
+        pressed = True
 
     if keys[pygame.K_s]:
         player_pos.y += 600 * dt
@@ -81,6 +82,7 @@ while running:
         p2_y = p1_y + hh
         img_rotation = 270
         img_flip = False
+        pressed = True
 
     if keys[pygame.K_a]:
         player_pos.x -= 600 * dt 
@@ -90,6 +92,7 @@ while running:
         p2_y = p1_y + hh
         img_rotation = 0
         img_flip = True
+        pressed = True
 
     if keys[pygame.K_d]:
         player_pos.x += 600 * dt 
@@ -99,6 +102,7 @@ while running:
         p2_y = p1_y + hh
         img_rotation = 0
         img_flip = False
+        pressed = True
         
 
     if keys[pygame.K_LSHIFT]:
@@ -106,7 +110,7 @@ while running:
 
 
     else:
-        pressed = False
+        
         sprint = 1
 
     if (pressed == True):
