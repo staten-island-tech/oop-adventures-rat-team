@@ -56,6 +56,7 @@ cat_visible = False
 cat_stand_maybe = 1
 walk_break = 0
 walk_break_check = False
+break_speed = False
 
 while running:
 #    print(player_pos)
@@ -197,76 +198,74 @@ while running:
                 player_pos.y = orig_y
     walk_break_check = False
     if cat_visible == True:
-        if cat_pos.x < player_pos.x:
-            if walk_break == 0:
-                if cat_walk != 5:
-                    cat_walk += 1
-                else:
-                    cat_walk = 0
-            cat_pos.x += 2
-            cat_standing = False
-            cat_stand_maybe = 0
-            if walk_break_check == False:
-                if walk_break == 3:
-                    walk_break = 0
-                    walk_break_check = True
-                else:
-                    walk_break += 1
-                    walk_break_check = True
-        elif cat_pos.x > player_pos.x:
-            if walk_break == 0:
-                if cat_walk != 5:
-                    cat_walk += 1
-                else:
-                    cat_walk = 0
-            cat_pos.x -= 2
-            cat_standing = False
-            cat_stand_maybe = 0
-            if walk_break_check == False:
-                if walk_break == 3:
-                    walk_break = 0
-                    walk_break_check = True
-                else:
-                    walk_break += 1
-                    walk_break_check = True
+        if break_speed == False:
+            break_speed = True
+            player_pos.y += 1
+            player_pos.y -= 1
+        if cat_pos.x < player_pos.x + 1 and cat_pos.x > player_pos.x - 1:
+            cat_standing = True
         else:
-            cat_stand_maybe = 1
-
-        if cat_pos.y < player_pos.y:
-            if walk_break == 0:
-                if cat_walk != 5:
-                    cat_walk += 1
-                else:
-                    cat_walk = 0
-            cat_pos.y += 2
             cat_standing = False
-            cat_stand_maybe = 0
-            if walk_break == 3:
-                walk_break = 0
-            else:
+            if cat_pos.x < player_pos.x:
+                if walk_break == 0:
+                    if cat_walk != 5:
+                        cat_walk += 1
+                    else:
+                        cat_walk = 0
+                cat_pos.x += 2
                 if walk_break_check == False:
-                    walk_break += 1
-                    walk_break_check = True
+                    if walk_break == 11:
+                        walk_break = 0
+                        walk_break_check = True
+                    else:
+                        walk_break += 1
+                        walk_break_check = True
+            elif cat_pos.x > player_pos.x:
+                if walk_break == 0:
+                    if cat_walk != 5:
+                        cat_walk += 1
+                    else:
+                        cat_walk = 0
+                cat_pos.x -= 2
+                if walk_break_check == False:
+                    if walk_break == 11:
+                        walk_break = 0
+                        walk_break_check = True
+                    else:
+                        walk_break += 1
+                        walk_break_check = True
+            else:
+                cat_stand_maybe = 1
 
-        elif cat_pos.y > player_pos.y:
-            if walk_break == 0:
-                if cat_walk != 5:
-                    cat_walk += 1
-                else:
-                    cat_walk = 0
-            cat_pos.y -= 2
-            cat_standing = False
-            cat_stand_maybe = 0
-            if walk_break_check == False:
-                if walk_break == 3:
+            if cat_pos.y < player_pos.y:
+                if walk_break == 0:
+                    if cat_walk != 5:
+                        cat_walk += 1
+                    else:
+                        cat_walk = 0
+                cat_pos.y += 2
+                if walk_break == 11:
                     walk_break = 0
-                    walk_break_check = True
                 else:
-                    walk_break += 1
-                    walk_break_check = True
-        else:
-            if cat_stand_maybe == 1:
-                cat_standing = True
+                    if walk_break_check == False:
+                        walk_break += 1
+                        walk_break_check = True
+
+            elif cat_pos.y > player_pos.y:
+                if walk_break == 0:
+                    if cat_walk != 5:
+                        cat_walk += 1
+                    else:
+                        cat_walk = 0
+                cat_pos.y -= 2
+                if walk_break_check == False:
+                    if walk_break == 11:
+                        walk_break = 0
+                        walk_break_check = True
+                    else:
+                        walk_break += 1
+                        walk_break_check = True
+
     pygame.display.flip()
 
     dt = clock.tick(60) / 1000 * sprint
