@@ -11,6 +11,7 @@ sprint = 1
 img_rotation = 0
 img_flip = False
 
+
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 
 
@@ -37,30 +38,37 @@ while running:
     
     origx = player_pos.x
     origy = player_pos.y
+    hitboxx = player_pos.x
+    hitboxy = player_pos.y
+    hb = 50
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
         player_pos.y -= 600 * dt
         img_rotation = 90
         img_flip = False
+        hitboxy = player_pos.y - hb
 
 
     if keys[pygame.K_s]:
         player_pos.y += 600 * dt
         img_rotation = 270
         img_flip = False
+        hitboxy = player_pos.y + hb
         
 
     if keys[pygame.K_a]:
         player_pos.x -= 600 * dt
         img_rotation = 0
         img_flip = True
+        hitboxx = player_pos.x - hb
         
 
     if keys[pygame.K_d]:
         player_pos.x += 600 * dt
         img_rotation = 0
         img_flip = False
+        hitboxx = player_pos.x + hb
 
     if keys[pygame.K_LSHIFT]:
          sprint = 2
@@ -73,8 +81,8 @@ while running:
 
     pygame.draw.circle(my_image, (0, 0, 255), (radius, radius), radius)
 
-    player_rect = my_image.get_rect(center=(player_pos.x, player_pos.y))
-    pygame.draw.rect(screen, (0,0,255), player_rect)
+    player_rect = my_image.get_rect(center=(hitboxx, hitboxy))
+    # pygame.draw.rect(screen, (0,0,255), player_rect)
     
 
 
