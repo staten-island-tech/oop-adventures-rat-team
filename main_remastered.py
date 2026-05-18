@@ -74,26 +74,28 @@ while running:
     pygame.draw.circle(my_image, (0, 0, 255), (radius, radius), radius)
 
     player_rect = my_image.get_rect(center=(player_pos.x, player_pos.y))
-    pygame.draw.rect(screen, (255,0,0), player_rect)
+    pygame.draw.rect(screen, (0,0,255), player_rect)
+    
+
 
     if player_rect.colliderect(left_wall):
         #player_rect.left = left_wall.right
         player_pos.x = origx
-        player_pos.y = origy
+        # player_pos.y = origy
 
     if player_rect.colliderect(right_wall):
         #player_rect.right = right_wall.left
         player_pos.x = origx
-        player_pos.y = origy
+        # player_pos.y = origy
 
     if player_rect.colliderect(top_wall):
         #player_rect.top = top_wall.bottom
-        player_pos.x = origx
+        # player_pos.x = origx
         player_pos.y = origy
 
     if player_rect.colliderect(bottom_wall):
         #player_rect.bottom = bottom_wall.top
-        player_pos.x = origx
+        # player_pos.x = origx
         player_pos.y = origy
         
 
