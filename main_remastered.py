@@ -68,7 +68,13 @@ while running:
     else:
         sprint = 1
 
+    radius = 40
+    my_image = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
+
+    pygame.draw.circle(my_image, (0, 0, 255), (radius, radius), radius)
+
     player_rect = my_image.get_rect(center=(player_pos.x, player_pos.y))
+    pygame.draw.rect(screen, (255,0,0), player_rect)
 
     if player_rect.colliderect(left_wall):
         #player_rect.left = left_wall.right
@@ -98,5 +104,4 @@ while running:
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
     dt = clock.tick(60) / 1000 * sprint
-    print(img_flip)
 pygame.quit()

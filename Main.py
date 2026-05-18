@@ -44,8 +44,8 @@ while running:
             if item == 1:  #wall
                 pygame.draw.rect(screen, 'red', (xpos, ypos, cellw-2, cellh-2))
 
-    # pygame.draw.circle(screen, "red", player_pos, 40)
-    screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
+    pygame.draw.circle(screen, "red", player_pos, 40)
+    # screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
 #    my_image = pygame.transform.scale(my_image, (60, 80))
     hw = my_image.get_width()/2
     hh = my_image.get_height()/2
