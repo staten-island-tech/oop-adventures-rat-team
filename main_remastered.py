@@ -82,7 +82,7 @@ while running:
     pygame.draw.circle(my_image, (0, 0, 255), (radius, radius), radius)
 
     player_rect = my_image.get_rect(center=(hitboxx, hitboxy))
-    # pygame.draw.rect(screen, (0,0,255), player_rect)
+    pygame.draw.rect(screen, (0,0,255), player_rect)
     
 
 
