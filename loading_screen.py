@@ -18,6 +18,9 @@ while running:
             
     screen.fill("light blue")
     dance_gif.render(screen, (800, 200)) 
+    converted_gif = dance_gif.convert_alpha()
+    resized_gif = pygame.transform.smoothscale(converted_gif, (800, 200))
+    screen.blit(resized_gif, (800, 2000))
     start_button = pygame.draw.rect(screen, (100, 100, 255), (50, 200, 300, 100))
     my_font = pygame.font.SysFont('Arial', 30, bold = True) 
     start_button = my_font.render('START', True, (255, 255, 255))
