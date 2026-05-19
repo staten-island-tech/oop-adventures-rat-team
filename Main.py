@@ -45,8 +45,8 @@ while running:
             if item == 1:  #wall
                 pygame.draw.rect(screen, 'red', (xpos, ypos, cellw-2, cellh-2))
 
-    # pygame.draw.circle(screen, "red", player_pos, 40)
-    screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
+    pygame.draw.circle(screen, "red", player_pos, 40)
+    # screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
 #    my_image = pygame.transform.scale(my_image, (60, 80))
     hw = my_image.get_width()/2
     hh = my_image.get_height()/2
@@ -61,7 +61,9 @@ while running:
     p2_x = 0
     p2_y = 0
 
-    pressed = True
+    pressed = False
+    keys = pygame.key.get_pressed()
+    
     if keys[pygame.K_w]:
         # print(keys)
         player_pos.y -= 600 * dt
@@ -71,8 +73,9 @@ while running:
         p2_y = p1_y - hh
         img_rotation = 90
         img_flip = False
+        pressed = True
 
-    elif keys[pygame.K_s]:
+    if keys[pygame.K_s]:
         player_pos.y += 600 * dt
         p1_x = player_pos.x - hw
         p1_y = player_pos.y + hh
@@ -80,8 +83,9 @@ while running:
         p2_y = p1_y + hh
         img_rotation = 270
         img_flip = False
+        pressed = True
 
-    elif keys[pygame.K_a]:
+    if keys[pygame.K_a]:
         player_pos.x -= 600 * dt 
         p1_x = player_pos.x - hw
         p1_y = player_pos.y - hh 
@@ -89,8 +93,9 @@ while running:
         p2_y = p1_y + hh
         img_rotation = 0
         img_flip = True
+        pressed = True
 
-    elif keys[pygame.K_d]:
+    if keys[pygame.K_d]:
         player_pos.x += 600 * dt 
         p1_x = player_pos.x + hw
         p1_y = player_pos.y - hh
@@ -98,12 +103,15 @@ while running:
         p2_y = p1_y + hh
         img_rotation = 0
         img_flip = False
+        pressed = True
+        
 
-    elif keys[pygame.K_r]:
+    if keys[pygame.K_LSHIFT]:
          sprint = 2
 
+
     else:
-        pressed = False
+        
         sprint = 1
 
     if (pressed == True):
@@ -115,7 +123,6 @@ while running:
 
         gridx3 = int(p2_x / cellw)
         gridy3 = int(p2_y / cellh)
-
 
 
         print(gridx1, gridy1)
