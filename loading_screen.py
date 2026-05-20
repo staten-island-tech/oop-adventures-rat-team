@@ -27,7 +27,7 @@ while running:
         dance_gif.render(screen, (800, 200))
 
         title_font = pygame.font.SysFont('Arial', 60, bold = True) 
-        title = title_font.render('RAT RUNNER', True, (0,0,0))
+        title = title_font.render('Scurry Folk', True, (0,0,0))
         screen.blit(title, (500, 10))
 
         start_font = pygame.font.SysFont('Arial', 30, bold = True) 
