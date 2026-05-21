@@ -17,9 +17,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        if event.type == pygame.MOUSEMOTION:
-            if start_button.collidepoint(event.pos):
-                print("Hovering!")
           
         if event.type == pygame.MOUSEBUTTONDOWN:
             if start_button.collidepoint(event.pos):
@@ -39,10 +36,15 @@ while running:
         start_button_text = start_font.render('START', True, (255, 255, 255))
         screen.blit(start_button_text, (150, 230))
 
-        
+    if start_button.collidepoint(pygame.mouse.get_pos()):
+        # print("Hovering!")
+        removal_button = pygame.draw.rect(screen, (173, 216, 230), (50, 200, 300, 100))
+        start_button = pygame.draw.rect(screen, (140, 140, 255), (55, 205, 290, 90))
+        start_button_text = start_font.render('START', True, (0, 0, 0))
+        screen.blit(start_button_text, (150, 230))
 
+        
     pygame.display.flip()
 
-    
 
 pygame.quit()
