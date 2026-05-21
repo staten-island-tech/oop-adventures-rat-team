@@ -17,6 +17,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        if event.type == pygame.MOUSEMOTION:
+            if start_button.collidepoint(event.pos):
+                print("Hovering!")
+          
         if event.type == pygame.MOUSEBUTTONDOWN:
             if start_button.collidepoint(event.pos):
                 print("Game Started!")
@@ -27,7 +31,7 @@ while running:
         dance_gif.render(screen, (800, 200))
 
         title_font = pygame.font.SysFont('Arial', 60, bold = True) 
-        title = title_font.render('RAT RUNNER', True, (0,0,0))
+        title = title_font.render('ScurryFolk', True, (0,0,0))
         screen.blit(title, (500, 10))
 
         start_font = pygame.font.SysFont('Arial', 30, bold = True) 
