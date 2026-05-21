@@ -11,6 +11,9 @@ sprint = 1
 img_rotation = 0
 img_flip = False
 
+import loading_screen.py
+loading_screen()
+
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 
@@ -20,9 +23,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+    loading_screen()
+    if gamerun == True
     screen.fill("light blue")
-
 
     my_image = pygame.image.load("RatRightSprite.png")
     my_image = pygame.transform.rotate(my_image, img_rotation)
