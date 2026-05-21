@@ -13,16 +13,18 @@ def starting_screen():
     pygame.font.init()
     
 
-    while running:
+    while True:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+                return False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if start_button.collidepoint(event.pos):
                     print("Game Started!")
                     gamerun = True
+                    return True
 
         if gamerun == False:
             screen.fill("light blue")
@@ -47,7 +49,3 @@ def starting_screen():
             
 
         pygame.display.flip()
-
-starting_screen()
-
-pygame.quit()

@@ -11,7 +11,7 @@ sprint = 1
 img_rotation = 0
 img_flip = False
 gamerun = False
-import loading_screen.py
+from loading_screen import starting_screen
 
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
@@ -23,7 +23,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     if gamerun == False:
-        loading_screen()
+        starting_screen()
+        gamerun = True
     if gamerun == True:
         screen.fill("light blue")
 
