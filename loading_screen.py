@@ -11,7 +11,8 @@ def starting_screen():
     running = True
     gamerun = False
     pygame.font.init()
-    
+    bg_image = pygame.image.load("starting_background.jpg")
+    bg_image = pygame.transform.scale(bg_image, (1280, 720))
 
     while True:
 
@@ -28,6 +29,7 @@ def starting_screen():
 
         if gamerun == False:
             screen.fill("light blue")
+            screen.blit(bg_image, (0, 0))
             dance_gif.render(screen, (800, 200))
 
             title_font = pygame.font.SysFont('Arial', 60, bold = True) 
@@ -41,10 +43,15 @@ def starting_screen():
 
         if start_button.collidepoint(pygame.mouse.get_pos()):
             # print("Hovering!")
-            removal_button = pygame.draw.rect(screen, (173, 216, 230), (50, 200, 300, 100))
+            # removal_button = pygame.draw.rect(screen, (173, 216, 230), (50, 200, 300, 100))
+            screen.blit(bg_image, (0, 0))
             start_button = pygame.draw.rect(screen, (140, 140, 255), (55, 205, 290, 90))
+            dance_gif.render(screen, (800, 200))
             start_button_text = start_font.render('START', True, (0, 0, 0))
             screen.blit(start_button_text, (150, 230))
+            screen.blit(title, (500, 10))
+            screen.blit(start_button_text, (150, 230))
+
 
             
 
