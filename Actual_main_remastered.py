@@ -2,10 +2,10 @@
 import pygame
 import random
 from loading_screen import starting_screen
-import Actual_cats
+from Actual_cats import loadcat
 
-print(Actual_cats.__file__)
-print(dir(Actual_cats))
+# print(Actual_cats.__file__)
+# print(dir(Actual_cats))
 
 class cat:
     def __init__(self, health, power, speed):
@@ -63,7 +63,7 @@ while running:
 
         my_image = pygame.image.load("RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
-        Actual_cats.loadcat(cat_walks, cat_walk, cat_rotation)
+        loadcat(cat_walks, cat_walk, cat_rotation)
         if (cat_flip == True): 
             cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
             cat_walk_animation = pygame.transform.flip(cat_walk_animation, True, False)
