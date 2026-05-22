@@ -63,7 +63,7 @@ while running:
 
         my_image = pygame.image.load("RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
-        loadcat(cat_walks, cat_walk, cat_rotation)
+        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing)
         if (cat_flip == True): 
             cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
             cat_walk_animation = pygame.transform.flip(cat_walk_animation, True, False)
@@ -80,17 +80,6 @@ while running:
         screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
 
         
-
-        cat_keys = pygame.key.get_pressed()
-
-        if cat_keys[pygame.K_e]:
-            cat_visible = True
-
-        if cat_standing == True and cat_visible == True:
-            screen.blit(cat_stand_animation, cat_pos)
-        elif cat_visible == True:
-            screen.blit(cat_walk_animation, cat_pos)
-
         # pygame.draw.circle(screen, "red", player_pos, 40)
         left_wall = pygame.draw.rect(screen, (255, 0, 0), (0, 0, 60, 900))
         right_wall = pygame.draw.rect(screen, (255, 0, 0), (1220, 0, 60, 900))
