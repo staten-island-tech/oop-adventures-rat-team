@@ -63,10 +63,8 @@ while running:
 
         my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
-        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing)
-        if (cat_flip == True): 
-            cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
-            cat_walk_animation = pygame.transform.flip(cat_walk_animation, True, False)
+        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip)
+
 
         my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
