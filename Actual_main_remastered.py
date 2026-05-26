@@ -61,14 +61,14 @@ while running:
 
         screen.fill("light blue")
 
-        my_image = pygame.image.load("RatRightSprite.png")
+        my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
         loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing)
         if (cat_flip == True): 
             cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
             cat_walk_animation = pygame.transform.flip(cat_walk_animation, True, False)
 
-        my_image = pygame.image.load("RatRightSprite.png")
+        my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
         if (img_flip == True): 
             my_image = pygame.transform.flip(my_image, True, False)
