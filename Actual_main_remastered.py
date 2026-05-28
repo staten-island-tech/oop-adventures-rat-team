@@ -26,6 +26,7 @@ sprint = 1
 img_rotation = 0
 img_flip = False
 gamerun = False
+actualbg_image = pygame.image.load("rat bg.png")
 
 
 cat_rotation = 0
@@ -60,6 +61,7 @@ while running:
     
 
         screen.fill("light blue")
+        screen.blit(actualbg_image, (0, 0))
 
         my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
@@ -71,18 +73,18 @@ while running:
         if (img_flip == True): 
             my_image = pygame.transform.flip(my_image, True, False)
 
-        left_wall = pygame.draw.rect(screen, (255, 0, 0), (0, 0, 60, 900))
-        right_wall = pygame.draw.rect(screen, (255, 0, 0), (1220, 0, 60, 900))
-        top_wall = pygame.draw.rect(screen, (255, 0, 0), (0, 0, 1220, 60))
-        bottom_wall = pygame.draw.rect(screen, (255, 0, 0), (0, 660, 1220, 60))
+        left_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 60, 900))
+        right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
+        top_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1220, 60))
+        bottom_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 660, 1220, 60))
         screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
 
         
         # pygame.draw.circle(screen, "red", player_pos, 40)
-        left_wall = pygame.draw.rect(screen, (255, 0, 0), (0, 0, 60, 900))
-        right_wall = pygame.draw.rect(screen, (255, 0, 0), (1220, 0, 60, 900))
-        top_wall = pygame.draw.rect(screen, (255, 0, 0), (0, 0, 1220, 60))
-        bottom_wall = pygame.draw.rect(screen, (255, 0, 0), (0, 660, 1220, 60))
+        left_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 60, 900))
+        right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
+        top_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1220, 60))
+        bottom_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 660, 1220, 60))
         screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
         
         origx = player_pos.x
