@@ -65,8 +65,12 @@ while running:
 
         my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
-        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip)
+        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break)
 
+        cat_keys = pygame.key.get_pressed()
+
+        if cat_keys[pygame.K_e]:
+            cat_visible = True
 
         my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
@@ -157,82 +161,7 @@ while running:
             player_pos.y = origy
 
 
-        walk_break_check = False
-        if cat_visible == True:
-            if break_speed == False:
-                break_speed = True
-                player_pos.y += 1
-                player_pos.y -= 1
-            if cat_pos.x < player_pos.x + 1 and cat_pos.x > player_pos.x - 1 and cat_pos.y < player_pos.y + 1 and cat_pos.y > player_pos.y - 1:
-                cat_standing = True
-            else:
-                cat_standing = False
-                if cat_pos.x < player_pos.x + 1 and cat_pos.x > player_pos.x - 1:
-                    pass
-                else:
-                    if cat_pos.x < player_pos.x:
-                        cat_flip = False
-                        if walk_break == 0:
-                            if cat_walk != 5:
-                                cat_walk += 1
-                            else:
-                                cat_walk = 0
-                        cat_pos.x += 2
-                        if walk_break_check == False:
-                            if walk_break == 11:
-                                walk_break = 0
-                                walk_break_check = True
-                            else:
-                                walk_break += 1
-                                walk_break_check = True
-                    elif cat_pos.x > player_pos.x:
-                        cat_flip = True
-                        if walk_break == 0:
-                            if cat_walk != 5:
-                                cat_walk += 1
-                            else:
-                                cat_walk = 0
-                        cat_pos.x -= 2
-                        if walk_break_check == False:
-                            if walk_break == 11:
-                                walk_break = 0
-                                walk_break_check = True
-                            else:
-                                walk_break += 1
-                                walk_break_check = True
-                    else:
-                        cat_stand_maybe = 1
-                if cat_pos.y < player_pos.y + 1 and cat_pos.y > player_pos.y - 1:
-                    pass
-                else:
-                    if cat_pos.y < player_pos.y:
-                        if walk_break == 0:
-                            if cat_walk != 5:
-                                cat_walk += 1
-                            else:
-                                cat_walk = 0
-                        cat_pos.y += 2
-                        if walk_break == 11:
-                            walk_break = 0
-                        else:
-                            if walk_break_check == False:
-                                walk_break += 1
-                                walk_break_check = True
 
-                    elif cat_pos.y > player_pos.y:
-                        if walk_break == 0:
-                            if cat_walk != 5:
-                                cat_walk += 1
-                            else:
-                                cat_walk = 0
-                        cat_pos.y -= 2
-                        if walk_break_check == False:
-                            if walk_break == 11:
-                                walk_break = 0
-                                walk_break_check = True
-                            else:
-                                walk_break += 1
-                                walk_break_check = True
 
     # flip() the display to put your work on screen
     pygame.display.flip()
