@@ -30,7 +30,7 @@ def starting_screen():
         if gamerun == False:
             screen.fill("light blue")
             screen.blit(bg_image, (0, 0))
-            dance_gif.render(screen, (800, 200))
+            dance_gif.render(screen, (780, 265))
 
             title_font = pygame.font.SysFont('Arial', 60, bold = True) 
             title = title_font.render('Scurry Folk', True, (255,255,255))
@@ -46,7 +46,7 @@ def starting_screen():
             # removal_button = pygame.draw.rect(screen, (173, 216, 230), (50, 200, 300, 100))
             screen.blit(bg_image, (0, 0))
             start_button = pygame.draw.rect(screen, (140, 140, 255), (55, 205, 290, 90))
-            dance_gif.render(screen, (800, 600))
+            dance_gif.render(screen, (780, 265))
             start_button_text = start_font.render('START', True, (0, 0, 0))
             screen.blit(start_button_text, (150, 230))
             screen.blit(title, (500, 10))
