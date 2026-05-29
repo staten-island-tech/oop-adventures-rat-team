@@ -34,7 +34,8 @@ cat_flip = False
 cat_animations = ["attack1", "attack2", "attack3", "attack4", "attack5", "attack6", "hurt1", "hurt2", "hurt3", "hurt4", "stand", "walk1", "walk2", "walk3", "walk4", "walk5", "walk6"]
 cat_walks = ["walk1", "walk2", "walk3", "walk4", "walk5", "walk6"]
 # animation = 0
-cat_walk = 0
+cat_walk = [0]
+cat_walk[0] = 0
 cat_standing = True
 cat_walking = False
 cat_animate = 1
@@ -66,7 +67,7 @@ while running:
         my_image = pygame.image.load("Rat_images\RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
         loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break)
-
+        print(cat_walk)
         cat_keys = pygame.key.get_pressed()
 
         if cat_keys[pygame.K_e]:

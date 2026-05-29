@@ -2,7 +2,7 @@
 def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break):
     import pygame
     cat_stand_animation = pygame.image.load(f"cat_images\stand.png")
-    cat_walk_animation = pygame.image.load(f"cat_images\{cat_walks[cat_walk]}.png")
+    cat_walk_animation = pygame.image.load(f"cat_images\{cat_walks[cat_walk[0]]}.png")
     cat_stand_animation = pygame.transform.rotate(cat_stand_animation, cat_rotation)
     cat_walk_animation = pygame.transform.rotate(cat_walk_animation, cat_rotation)
     
@@ -36,10 +36,10 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
                 if cat_pos.x < player_pos.x:
                     cat_flip = False
                     if walk_break == 0:
-                        if cat_walk != 5:
-                            cat_walk += 1
+                        if cat_walk[0] != 5:
+                            cat_walk[0] += 1
                         else:
-                            cat_walk = 0
+                            cat_walk[0] = 0
                     cat_pos.x += 2
                     if walk_break_check == False:
                         if walk_break == 11:
@@ -51,10 +51,10 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
                 elif cat_pos.x > player_pos.x:
                     cat_flip = True
                     if walk_break == 0:
-                        if cat_walk != 5:
-                            cat_walk += 1
+                        if cat_walk[0] != 5:
+                            cat_walk[0] += 1
                         else:
-                            cat_walk = 0
+                            cat_walk[0] = 0
                     cat_pos.x -= 2
                     if walk_break_check == False:
                         if walk_break == 11:
@@ -70,10 +70,10 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
             else:
                 if cat_pos.y < player_pos.y:
                     if walk_break == 0:
-                        if cat_walk != 5:
-                            cat_walk += 1
+                        if cat_walk[0] != 5:
+                            cat_walk[0] += 1
                         else:
-                            cat_walk = 0
+                            cat_walk[0] = 0
                     cat_pos.y += 2
                     if walk_break == 11:
                         walk_break = 0
@@ -84,10 +84,10 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
 
                 elif cat_pos.y > player_pos.y:
                     if walk_break == 0:
-                        if cat_walk != 5:
-                            cat_walk += 1
+                        if cat_walk[0] != 5:
+                            cat_walk[0] += 1
                         else:
-                            cat_walk = 0
+                            cat_walk[0] = 0
                     cat_pos.y -= 2
                     if walk_break_check == False:
                         if walk_break == 11:
