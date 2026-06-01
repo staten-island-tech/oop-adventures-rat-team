@@ -11,14 +11,14 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
     if cat_keys[pygame.K_e]:
         cat_visible = True
 
+    if cat_flip[0] == True:
+        cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
+        cat_walk_animation = pygame.transform.flip(cat_walk_animation, True, False)
+
     if cat_standing[0] == True and cat_visible == True:
         screen.blit(cat_stand_animation, cat_pos)
     elif cat_visible == True:
         screen.blit(cat_walk_animation, cat_pos)
-
-    if (cat_flip[0] == True): 
-        cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
-        cat_walk_animation = pygame.transform.flip(cat_walk_animation, True, False)
 
     walk_break_check = False
     if cat_visible == True:
