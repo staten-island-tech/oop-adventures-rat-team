@@ -30,7 +30,8 @@ actualbg_image = pygame.image.load("rat bg.png")
 
 
 cat_rotation = [0]
-cat_flip = [False]
+cat_flip = []
+cat_flip[0] = False
 cat_animations = ["attack1", "attack2", "attack3", "attack4", "attack5", "attack6", "hurt1", "hurt2", "hurt3", "hurt4", "stand", "walk1", "walk2", "walk3", "walk4", "walk5", "walk6"]
 cat_walks = ["walk1", "walk2", "walk3", "walk4", "walk5", "walk6"]
 # animation = 0
