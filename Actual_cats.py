@@ -97,3 +97,17 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
                             walk_break[0] += 1
                             walk_break_check = True
 
+        # cat_rect = my_image.get_rect(center=(hitboxx, hitboxy))
+
+        # if cat_rect.colliderect(left_wall):
+        #     player_pos.x = origx
+
+        # if cat_rect.colliderect(right_wall):
+        #     player_pos.x = origx
+
+        # if cat_rect.colliderect(top_wall):
+        #     player_pos.y = origy
+
+        # if cat_rect.colliderect(bottom_wall):
+        #     player_pos.y = origy
+
