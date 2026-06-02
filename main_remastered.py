@@ -5,6 +5,7 @@ import pygame
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
+time = 0
 running = True
 dt = 0
 sprint = 1
@@ -20,7 +21,6 @@ player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 
 
 while running:
-    time = pygame.time.get_ticks() / 1000
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -29,7 +29,7 @@ while running:
         gamerun = True
     if gamerun == True:
         screen.fill("light blue")
-    
+        time = pygame.time.get_ticks() // 1000
 
         my_image = pygame.image.load("RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
@@ -50,9 +50,10 @@ while running:
         hb = 50
 
         print (time)
-        if time > 29 and time < 31 :
+        if time == 20:
             pls_wait_30secs()
             print('check works')
+
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:

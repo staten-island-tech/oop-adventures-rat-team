@@ -35,7 +35,7 @@ def pls_wait_30secs():
         if gamerun == False:
             screen.fill("white")
             # screen.blit(bg_image, (0, 0))
-            ad.render(screen, (300, 265))
+            ad.render(screen, (300, 200))
 
             title_font = pygame.font.SysFont('Arial', 40, bold = True) 
             title = title_font.render('your game will resume shortly after this add...', True, (0,0,0))
@@ -44,19 +44,18 @@ def pls_wait_30secs():
             start_font = pygame.font.SysFont('Arial', 30, bold = True) 
             start_button = pygame.draw.rect(screen, (100, 100, 255), (1200, 10, 50, 50))
             start_button_text = start_font.render('X', True, (0, 0, 0))
-            screen.blit(start_button_text, (1210, 10))
+            screen.blit(start_button_text, (1215, 22))
 
         if start_button.collidepoint(pygame.mouse.get_pos()):
             # print("Hovering!")
             # removal_button = pygame.draw.rect(screen, (173, 216, 230), (50, 200, 300, 100))
             # screen.blit(bg_image, (0, 0))
             screen.fill('white')
-            start_button = pygame.draw.rect(screen, (100, 100, 255), (800, 0, 100, 100))
-            ad.render(screen, (300, 265))
+            start_button = pygame.draw.rect(screen, (150, 150, 255), (1202, 12, 45, 45))
+            ad.render(screen, (300, 200))
             start_button_text = start_font.render('X', True, (0, 0, 0))
-            screen.blit(start_button_text, (150, 230))
             screen.blit(title, (250, 10))
-            screen.blit(start_button_text, (810, 110))
+            screen.blit(start_button_text, (1215, 22))
 
 
             
