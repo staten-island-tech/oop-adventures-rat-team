@@ -15,6 +15,8 @@ gamerun = False
 adrun = False
 from loading_screen import starting_screen
 from adds import pls_wait_30secs
+import random
+adtime = random.randint(5,10)
 
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
@@ -50,7 +52,7 @@ while running:
         hb = 50
 
         print (time)
-        if time == 20:
+        if time == adtime:
             pls_wait_30secs()
             print('check works')
 
