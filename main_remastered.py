@@ -17,21 +17,24 @@ from loading_screen import starting_screen
 from adds import pls_wait_30secs
 import random
 adtime = random.randint(5,10)
+loadtime = 0
 
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 
 
 while running:
+    time = pygame.time.get_ticks() // 1000
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     if gamerun == False:
         starting_screen()
+        loadtime = time
         gamerun = True
     if gamerun == True:
         screen.fill("light blue")
-        time = pygame.time.get_ticks() // 1000
+
 
         my_image = pygame.image.load("RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
@@ -51,11 +54,10 @@ while running:
         hitboxy = player_pos.y
         hb = 50
 
-        print (time)
-        if time == adtime:
+        print (time-loadtime, adtime)
+        if time - loadtime > adtime:
             pls_wait_30secs()
             print('check works')
-
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:

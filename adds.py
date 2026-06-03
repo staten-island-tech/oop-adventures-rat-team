@@ -6,6 +6,7 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 
 def pls_wait_30secs():
+#    global loadtime
     import gif_pygame
     dance_gif = gif_pygame.load("rat-dance_gif.gif") 
     running = True
@@ -29,7 +30,7 @@ def pls_wait_30secs():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if start_button.collidepoint(event.pos):
                     print("Game Started!")
-                    gamerun = True
+                    loadtime = pygame.time.get_ticks() // 1000
                     return True
 
         if gamerun == False:
