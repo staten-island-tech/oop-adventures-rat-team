@@ -1,7 +1,7 @@
 
 def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_walk, img_rotation, rat_standing, img_flip, rbreak_speed, rwalk_break):
     import pygame
-    rat_stand_animation = pygame.image.load(f"rat_images\stand.png")
+    rat_stand_animation = pygame.image.load(f"rat_images\pstand.png")
     rat_walk_animation = pygame.image.load(f"rat_images\{rat_walks[rat_walk[0]]}.png")
     rat_stand_animation = pygame.transform.rotate(rat_stand_animation, img_rotation[0])
     rat_walk_animation = pygame.transform.rotate(rat_walk_animation, img_rotation[0])
@@ -57,16 +57,12 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_walk, img_rotation,
                             rwalk_break_check = True
             else:
                     rat_stand_maybe = 1
-            if player_pos.y < player_pos.y + 1 and player_pos.y > player_pos.y - 1:
-                pass
-            else:
-                if player_pos.y < player_pos.y:
+            if keys[pygame.K_s]:
                     if rwalk_break[0] == 0:
                         if rat_walk[0] != 5:
                             rat_walk[0] += 1
                         else:
                             rat_walk[0] = 0
-                    player_pos.y += 2
                     if rwalk_break[0] == 11:
                         rwalk_break[0] = 0
                     else:
@@ -74,13 +70,12 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_walk, img_rotation,
                             rwalk_break[0] += 1
                             rwalk_break_check = True
 
-                elif player_pos.y > player_pos.y:
+            elif keys[pygame.K_w]:
                     if rwalk_break[0] == 0:
                         if rat_walk[0] != 5:
                             rat_walk[0] += 1
                         else:
                             rat_walk[0] = 0
-                    player_pos.y -= 2
                     if rwalk_break_check == False:
                         if rwalk_break[0] == 11:
                             rwalk_break[0] = 0

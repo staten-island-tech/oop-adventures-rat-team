@@ -3,6 +3,7 @@ import pygame
 import random
 from loading_screen import starting_screen
 from Actual_cats import loadcat
+from Actual_rats import *
 
 # print(Actual_cats.__file__)
 # print(dir(Actual_cats))
@@ -23,7 +24,7 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 sprint = 1
-img_rotation = 0
+img_rotation = [False]
 img_flip = False
 gamerun = False
 actualbg_image = pygame.image.load("rat bg.png")
@@ -46,6 +47,14 @@ walk_break = [0]
 walk_break[0] = 0
 walk_break_check = False
 break_speed = False
+rscreen = pygame.display.set_mode((1280, 720))
+rat_visible = True
+rat_walk = [0]
+rat_walk[0] = 0
+rat_walks = ["rwalk1", "rwalk2", "rwalk3", "rwalk4", "rwalk5", "rwalk6"]
+rat_standing = [True]
+rbreak_speed = False
+rwalk_break = [0]
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
@@ -66,19 +75,13 @@ while running:
         screen.fill("light blue")
         screen.blit(actualbg_image, (0, 0))
 
-        my_image = pygame.image.load("Rat_images\RatRightSprite.png")
-        my_image = pygame.transform.rotate(my_image, img_rotation)
+        loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_walk, img_rotation, rat_standing, img_flip, rbreak_speed, rwalk_break)
         loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break)
         # print(cat_walk)
         cat_keys = pygame.key.get_pressed()
 
         if cat_keys[pygame.K_e]:
             cat_visible = True
-
-        my_image = pygame.image.load("Rat_images\RatRightSprite.png")
-        my_image = pygame.transform.rotate(my_image, img_rotation)
-        if (img_flip == True): 
-            my_image = pygame.transform.flip(my_image, True, False)
 
         left_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 60, 900))
         right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
