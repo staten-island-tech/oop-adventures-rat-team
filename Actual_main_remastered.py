@@ -25,7 +25,8 @@ running = True
 dt = 0
 sprint = 1
 img_rotation = [False]
-img_flip = False
+img_flip = [False]
+img_flip[0] = False
 gamerun = False
 actualbg_image = pygame.image.load("rat bg.png")
 
@@ -87,7 +88,7 @@ while running:
         right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
         top_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1220, 60))
         bottom_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 660, 1220, 60))
-        screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
+        # screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
 
         
         # pygame.draw.circle(screen, "red", player_pos, 40)
@@ -95,7 +96,7 @@ while running:
         right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
         top_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1220, 60))
         bottom_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 660, 1220, 60))
-        screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
+        # screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
         
         origx = player_pos.x
         origy = player_pos.y
@@ -139,11 +140,11 @@ while running:
             sprint = 1
 
         radius = 40
-        my_image = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
+        rat_walk = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
 
-        pygame.draw.circle(my_image, (0, 0, 255), (radius, radius), radius)
+        pygame.draw.circle(rat_walk, (0, 0, 255), (radius, radius), radius)
 
-        player_rect = my_image.get_rect(center=(hitboxx, hitboxy))
+        player_rect = rat_walk.get_rect(center=(hitboxx, hitboxy))
         # pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
