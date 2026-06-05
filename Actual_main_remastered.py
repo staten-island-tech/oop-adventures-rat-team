@@ -24,9 +24,6 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 sprint = 1
-img_rotation = [False]
-img_flip = [False]
-img_flip[0] = False
 gamerun = False
 actualbg_image = pygame.image.load("rat bg.png")
 
@@ -50,8 +47,6 @@ walk_break_check = False
 break_speed = False
 rscreen = pygame.display.set_mode((1280, 720))
 rat_visible = True
-rat_walk = [0]
-rat_walk[0] = 0
 rat_walks = ["rwalk1", "rwalk2", "rwalk3", "rwalk4", "rwalk5", "rwalk6"]
 rat_standing = [True]
 rbreak_speed = False
@@ -76,7 +71,7 @@ while running:
         screen.fill("light blue")
         screen.blit(actualbg_image, (0, 0))
 
-        loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_walk, img_rotation, rat_standing, img_flip, rbreak_speed, rwalk_break)
+        loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_speed, rwalk_break)
         loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break)
         # print(cat_walk)
         cat_keys = pygame.key.get_pressed()
