@@ -73,7 +73,7 @@ while running:
         print (time-loadtime, adtime)
         if time - loadtime == adtime:
             pls_wait_30secs()
-            loadtime = time   
+            loadtime = time
             adtime = random.randint(69,100)
             print('check works')
 
