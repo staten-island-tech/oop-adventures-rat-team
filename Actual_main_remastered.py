@@ -31,7 +31,7 @@ sprint = 1
 gamerun = False
 actualbg_image = pygame.image.load("rat bg.png")
 
-adtime = random.randint(6,10)
+adtime = random.randint(60,100)
 loadtime = 0
 shop_open = False
 img_flip = False
@@ -65,6 +65,8 @@ rwalk_break = [0]
 img_rotation = 0
 img_flip = False
 
+rhealth =100
+
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
 
@@ -83,7 +85,7 @@ while running:
         print("Shop Opened")
         shop()
     
-    if gamerun == True and shop_open == False:
+    if gamerun == True: # and shop_open == False:
         screen.fill("light blue")
     
 
@@ -111,28 +113,63 @@ while running:
         top_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1220, 60))
         bottom_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 660, 1220, 60))
         # screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
+
+        attack_font = pygame.font.SysFont('Arial', 30, bold = True) 
+        attack_text = attack_font.render('Press "K" to Attack', True, (255, 255, 255))
+        screen.blit(attack_text, (1000, 10))
+
+        if rhealth == 100:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 300, 10))
+
+        if rhealth == 90:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 270, 10))
+
+        if rhealth == 80:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 240, 10))
         
+        if rhealth == 70:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 210, 10))
+        
+        if rhealth == 60:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 180, 10))
+        
+        if rhealth == 50:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 150, 10))
+
+        if rhealth == 40:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 120, 10))
+
+        if rhealth == 30:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 90, 10))
+        
+        if rhealth == 20:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 60, 10))
+
+        if rhealth == 10:
+            health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 30, 10))
+
+
         origx = player_pos.x
         origy = player_pos.y
         hitboxx = player_pos.x
         hitboxy = player_pos.y
         hb = 60
 
-        shop_font = pygame.font.SysFont('Arial', 30, bold = True) 
-        shop_button = pygame.draw.rect(screen, (100, 100, 255), (1150, 10, 100, 50))
-        shop_button_text = shop_font.render('Shop', True, (0, 0, 0))
-        screen.blit(shop_button_text, (1167, 18))
+        # shop_font = pygame.font.SysFont('Arial', 30, bold = True) 
+        # shop_button = pygame.draw.rect(screen, (100, 100, 255), (1150, 10, 100, 50))
+        # shop_button_text = shop_font.render('Shop', True, (0, 0, 0))
+        # screen.blit(shop_button_text, (1167, 18))
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if shop_button.collidepoint(event.pos):
-                shop_open = True
+        # if event.type == pygame.MOUSEBUTTONDOWN:
+        #     if shop_button.collidepoint(event.pos):
+        #         shop_open = True
                 
 
         print (time-loadtime, adtime)
         if time - loadtime == adtime:
             pls_wait_30secs()
             loadtime = pygame.time.get_ticks() // 1000
-            #adtime = random.randint(6,10)
+            adtime = random.randint(60,100)
             print('check works')
         
 
@@ -166,6 +203,9 @@ while running:
 
         if keys[pygame.K_LSHIFT]:
             sprint = 2
+
+        if keys[pygame.K_k]:
+            rhealth -=10
 
         else:
             sprint = 1
