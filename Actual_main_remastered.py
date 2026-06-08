@@ -47,10 +47,13 @@ walk_break_check = False
 break_speed = False
 rscreen = pygame.display.set_mode((1280, 720))
 rat_visible = True
-rat_walks = ["rwalk1", "rwalk2", "rwalk3", "rwalk4", "rwalk5", "rwalk6"]
+rat_walks = ["rwalk1", "rwalk2", "rwalk3", "rwalk4", "rwalk5"]
 rat_standing = [True]
 rbreak_speed = False
+rat_walk = [0]
 rwalk_break = [0]
+img_rotation = [False]
+img_flip = False
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
@@ -71,7 +74,7 @@ while running:
         screen.fill("light blue")
         screen.blit(actualbg_image, (0, 0))
 
-        loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_speed, rwalk_break)
+        loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_speed, rat_walk, rwalk_break, img_rotation, img_flip)
         loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break)
         # print(cat_walk)
         cat_keys = pygame.key.get_pressed()
@@ -135,11 +138,11 @@ while running:
             sprint = 1
 
         radius = 40
-        rat_walk = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
+        rat_walk_surf = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
 
-        pygame.draw.circle(rat_walk, (0, 0, 255), (radius, radius), radius)
+        pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
-        player_rect = rat_walk.get_rect(center=(hitboxx, hitboxy))
+        player_rect = rat_walk_surf.get_rect(center=(hitboxx, hitboxy))
         # pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
