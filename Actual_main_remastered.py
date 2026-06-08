@@ -4,6 +4,10 @@ import random
 from loading_screen import starting_screen
 from Actual_cats import loadcat
 from Actual_rats import *
+from adds import pls_wait_30secs
+from Shop import shop
+import random
+ 
 
 # print(Actual_cats.__file__)
 # print(dir(Actual_cats))
@@ -27,6 +31,12 @@ sprint = 1
 gamerun = False
 actualbg_image = pygame.image.load("rat bg.png")
 
+adtime = random.randint(6,10)
+loadtime = 0
+shop_open = False
+img_flip = False
+gamerun = False
+adrun = False
 
 cat_rotation = [0]
 cat_flip = [False]
@@ -61,14 +71,20 @@ cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
 
 while running:
 
+    time = pygame.time.get_ticks() // 1000
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
     if gamerun == False:
         starting_screen()
+        loadtime = time
         gamerun = True
-    if gamerun == True:
+    if shop_open == True :
+        print("Shop Opened")
+        shop()
+    
+    if gamerun == True and shop_open == False:
+        screen.fill("light blue")
     
 
         screen.fill("light blue")
@@ -101,6 +117,23 @@ while running:
         hitboxx = player_pos.x
         hitboxy = player_pos.y
         hb = 60
+
+        shop_font = pygame.font.SysFont('Arial', 30, bold = True) 
+        shop_button = pygame.draw.rect(screen, (100, 100, 255), (1150, 10, 100, 50))
+        shop_button_text = shop_font.render('Shop', True, (0, 0, 0))
+        screen.blit(shop_button_text, (1167, 18))
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if shop_button.collidepoint(event.pos):
+                shop_open = True
+                
+
+        print (time-loadtime, adtime)
+        if time - loadtime == adtime:
+            pls_wait_30secs()
+            loadtime = pygame.time.get_ticks() // 1000
+            #adtime = random.randint(6,10)
+            print('check works')
         
 
         keys = pygame.key.get_pressed()

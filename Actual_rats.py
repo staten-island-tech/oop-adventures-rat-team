@@ -32,9 +32,7 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
             rat_standing[0] = False
             if keys[pygame.K_d]:
                     img_flip = False
-                    print (rat_walk[0])
                     if rwalk_break[0] == 0:
-                        print("hi")
                         if rat_walk[0] != 4:
                             rat_walk[0] += 1
                         else:
@@ -49,7 +47,6 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
                             
             elif keys[pygame.K_a]:
                     img_flip = True
-                    print (rat_walk[0])
                     if rwalk_break[0] == 0:
                         if rat_walk[0] != 4:
                             rat_walk[0] += 1
