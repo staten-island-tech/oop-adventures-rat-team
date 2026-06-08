@@ -52,7 +52,7 @@ rat_standing = [True]
 rbreak_speed = False
 rat_walk = [0]
 rwalk_break = [0]
-img_rotation = [False]
+img_rotation = 0
 img_flip = False
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
@@ -89,7 +89,7 @@ while running:
         # screen.blit(my_image, (player_pos.x - my_image.get_width()/2, player_pos.y - my_image.get_height()/2))
 
         
-        # pygame.draw.circle(screen, "red", player_pos, 40)
+        # =pygame.draw.circle(screen, "red", player_pos, 40)
         left_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 60, 900))
         right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
         top_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 1220, 60))
@@ -100,7 +100,7 @@ while running:
         origy = player_pos.y
         hitboxx = player_pos.x
         hitboxy = player_pos.y
-        hb = 50
+        hb = 60
         
 
         keys = pygame.key.get_pressed()
@@ -108,7 +108,7 @@ while running:
             player_pos.y -= 600 * dt
             img_rotation = 90
             img_flip = False
-            hitboxy = player_pos.y - hb
+            hitboxy = player_pos.y - hb +30
 
 
         if keys[pygame.K_s]:
@@ -122,14 +122,14 @@ while running:
             player_pos.x -= 600 * dt
             img_rotation = 0
             img_flip = True
-            hitboxx = player_pos.x - hb
+            hitboxx = player_pos.x - hb -20
             
 
         if keys[pygame.K_d]:
             player_pos.x += 600 * dt
             img_rotation = 0
             img_flip = False
-            hitboxx = player_pos.x + hb
+            hitboxx = player_pos.x + hb -40
 
         if keys[pygame.K_LSHIFT]:
             sprint = 2
@@ -142,7 +142,7 @@ while running:
 
         pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
-        player_rect = rat_walk_surf.get_rect(center=(hitboxx, hitboxy))
+        player_rect = rat_walk_surf.get_rect(center=(hitboxx+120, hitboxy+60))
         # pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
