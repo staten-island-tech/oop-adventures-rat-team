@@ -5,28 +5,42 @@ import pygame
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
+time = 0
 running = True
 dt = 0
 sprint = 1
 img_rotation = 0
 img_flip = False
 gamerun = False
+adrun = False
 from loading_screen import starting_screen
+from adds import pls_wait_30secs
+from Shop import shop
+import random
+adtime = random.randint(60,100)
+loadtime = 0
+shop_open = False 
 
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 
 
 while running:
-
+    time = pygame.time.get_ticks() // 1000
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     if gamerun == False:
         starting_screen()
+        loadtime = time
         gamerun = True
-    if gamerun == True:
+    if shop_open == True :
+        print("Shop Opened")
+        shop()
+    
+    if gamerun == True and shop_open == False:
         screen.fill("light blue")
+
 
         my_image = pygame.image.load("RatRightSprite.png")
         my_image = pygame.transform.rotate(my_image, img_rotation)
@@ -46,7 +60,26 @@ while running:
         hitboxy = player_pos.y
         hb = 50
 
+        shop_font = pygame.font.SysFont('Arial', 30, bold = True) 
+        shop_button = pygame.draw.rect(screen, (100, 100, 255), (1150, 10, 100, 50))
+        shop_button_text = shop_font.render('Shop', True, (0, 0, 0))
+        screen.blit(shop_button_text, (1167, 18))
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if shop_button.collidepoint(event.pos):
+                shop_open = True
+                
+
+        print (time-loadtime, adtime)
+        if time - loadtime == adtime:
+            pls_wait_30secs()
+            loadtime = time
+            adtime = random.randint(69,100)
+            print('check works')
+
+
         keys = pygame.key.get_pressed()
+
         if keys[pygame.K_w]:
             player_pos.y -= 600 * dt
             img_rotation = 90
