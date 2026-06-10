@@ -58,6 +58,7 @@ break_speed = False
 rscreen = pygame.display.set_mode((1280, 720))
 rat_visible = True
 rat_walks = ["rwalk1", "rwalk2", "rwalk3", "rwalk4", "rwalk5"]
+rat_vertical = ['rwalkv1.png', 'rwalkv2.png', 'rwalkv3.png', 'rwalkv4.png', 'rwalkv5.png', 'rwalkv6']
 rat_standing = [True]
 rbreak_speed = False
 rat_walk = [0]
@@ -216,7 +217,7 @@ while running:
         pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
         player_rect = rat_walk_surf.get_rect(center=(hitboxx+120, hitboxy+60))
-        # pygame.draw.rect(screen, (0,0,255), player_rect)
+        pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
             #player_rect.left = left_wall.right
