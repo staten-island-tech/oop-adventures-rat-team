@@ -188,7 +188,7 @@ while running:
         if keys[pygame.K_s]:
             player_pos.y += 600 * dt
             img_rotation = 270
-            img_flip = False
+            img_flip = True
             hitboxy = player_pos.y + hb
             
 

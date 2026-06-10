@@ -79,10 +79,10 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
                         else:
                             rwalk_break[0] += 1
                             rwalk_break_check = True
-            else:
-                    rat_stand_maybe = 1
-            if keys[pygame.K_s]:
-                    img_flip = False
+ #           else:
+#                    rat_stand_maybe = 1
+            elif keys[pygame.K_s]:
+                    img_flip = True
                     print (rat_walk[0])
                     if rwalk_break[0] == 0:
                         if rat_vertical[0] != 4:
