@@ -101,12 +101,12 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
                             walk_break_check = True
 
 
-        radius = 40
+        radius = 45
         cat_walk_surf = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
 
         pygame.draw.circle(cat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
-        cat_rect = cat_walk_surf.get_rect(center=(chitboxx+120, chitboxy+120))
+        cat_rect = cat_walk_surf.get_rect(center=(chitboxx+110, chitboxy+120))
         pygame.draw.rect(screen, (255,0,0), cat_rect)
 
         # cat_rect = my_image.get_rect(center=(hitboxx, hitboxy))
