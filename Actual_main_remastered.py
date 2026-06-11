@@ -74,6 +74,7 @@ rat_is_vertical = [False]
 rat_is_attacking = [False]
 rat_attacking_break = [0]
 rat_attacking_break[0] = 0
+facing = "right"
 
 rhealth =100
 
@@ -174,7 +175,6 @@ while running:
         #     if shop_button.collidepoint(event.pos):
         #         shop_open = True
                 
-
         print (time-loadtime, adtime)
         if time - loadtime == adtime:
             pls_wait_30secs()
@@ -189,6 +189,7 @@ while running:
             img_rotation = 90
             img_flip = False
             hitboxy = player_pos.y - hb +30
+            facing = "up"
 
 
         if keys[pygame.K_s]:
@@ -196,6 +197,7 @@ while running:
             img_rotation = 270
             img_flip = True
             hitboxy = player_pos.y + hb
+            facing = "down"
             
 
         if keys[pygame.K_a]:
@@ -203,6 +205,7 @@ while running:
             img_rotation = 0
             img_flip = True
             hitboxx = player_pos.x - hb -20
+            facing = "left"
             
 
         if keys[pygame.K_d]:
@@ -210,9 +213,26 @@ while running:
             img_rotation = 0
             img_flip = False
             hitboxx = player_pos.x + hb -40
+            facing = "right"
 
         if keys[pygame.K_LSHIFT]:
-            sprint = 2                
+            sprint = 2          
+
+        if facing == "up" or facing == "down":
+            hitboxx = player_pos.x - 60
+            if facing == "down":
+                hitboxy = player_pos.y + 40
+
+        if keys[pygame.K_k]:
+            if facing == "right":
+                rattack_rect.midleft = (player_rect.right + 10, player_rect.centery)
+            if facing == "left":
+                rattack_rect.midright = (player_rect.right - 120, player_rect.centery)
+            if facing == "up":
+                rattack_rect.midbottom = (player_rect.centerx, player_rect.top - 20)
+            if facing == "down":
+                rattack_rect.midtop = (player_rect.centerx, player_rect.bottom + 20)
+            # pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
 
         else:
             sprint = 1
@@ -222,7 +242,8 @@ while running:
 
         pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
-        player_rect = rat_walk_surf.get_rect(center=(hitboxx+120, hitboxy+60))
+        player_rect = rat_walk_surf.get_rect(center=(hitboxx+100, hitboxy+60))
+        rattack_rect = rat_walk_surf.get_rect()
         # pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):

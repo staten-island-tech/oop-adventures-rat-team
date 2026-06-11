@@ -29,30 +29,30 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
     elif keys[pygame.K_a] or keys[pygame.K_d]:
         rat_is_vertical[0] = False
     
-    if keys[pygame.K_k]:
-        if rat_attacking_break[0] == 0:
-            rat_is_attacking[0] = True
-    if rat_attacking_break[0] != 59:
-        rat_attacking_break[0] += 1
-    else:
-        rat_attacking_break[0] = 0
+    # if keys[pygame.K_k]:
+    #     if rat_attacking_break[0] == 0:
+    #         rat_is_attacking[0] = True
+    # if rat_attacking_break[0] != 59:
+    #     rat_attacking_break[0] += 1
+    # else:
+    #     rat_attacking_break[0] = 0
 
 
 
-    if rat_is_attacking[0] == True:
-        print("attacking")
-        rscreen.blit(rat_attack_animation, player_pos)
-    else:
-        if rat_standing[0] == True and rat_visible == True and rat_is_vertical[0] == False:
-            rscreen.blit(rat_stand_animation, player_pos)
-        if rat_visible == True and rat_is_vertical[0] == False and rat_standing[0] == False:
-            rscreen.blit(rat_walk_animation, player_pos)
-        if rat_standing[0] == True and rat_visible == True and rat_is_vertical[0] == True:
-            print("vertical stand")
-            rscreen.blit(vrat_stand_animation, player_pos)
-        if rat_visible == True and rat_is_vertical[0] == True and rat_standing[0] == False:
-            print("vertical walk")
-            rscreen.blit(vrat_walk_animation, player_pos)
+    # if rat_is_attacking[0] == True:
+    #     print("attacking")
+    #     rscreen.blit(rat_attack_animation, player_pos)
+    # else:
+    if rat_standing[0] == True and rat_visible == True and rat_is_vertical[0] == False:
+        rscreen.blit(rat_stand_animation, player_pos)
+    if rat_visible == True and rat_is_vertical[0] == False and rat_standing[0] == False:
+        rscreen.blit(rat_walk_animation, player_pos)
+    if rat_standing[0] == True and rat_visible == True and rat_is_vertical[0] == True:
+        print("vertical stand")
+        rscreen.blit(vrat_stand_animation, player_pos)
+    if rat_visible == True and rat_is_vertical[0] == True and rat_standing[0] == False:
+        print("vertical walk")
+        rscreen.blit(vrat_walk_animation, player_pos)
 
     rwalk_break_check = False
     if rat_visible == True:
