@@ -24,7 +24,7 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
 
     if keys[pygame.K_w] or keys[pygame.K_s]:
         rat_is_vertical[0] = True
-    else:
+    elif keys[pygame.K_a] or keys[pygame.K_d]:
         rat_is_vertical[0] = False
 
     if rat_standing[0] == True and rat_visible == True and rat_is_vertical[0] == False:
