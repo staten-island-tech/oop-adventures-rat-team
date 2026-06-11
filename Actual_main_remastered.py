@@ -59,6 +59,9 @@ rscreen = pygame.display.set_mode((1280, 720))
 rat_visible = True
 rat_walks = ["rwalk1", "rwalk2", "rwalk3", "rwalk4", "rwalk5"]
 rat_verticals = ['rwalkv1', 'rwalkv2', 'rwalkv3', 'rwalkv4', 'rwalkv5', 'rwalkv6']
+rat_attacks = ["rattack1", "rattack2", "rattack3", "rattack4", "rattack5"]
+rat_attack = [0]
+rat_attack[0] = 0
 rat_vertical = [0]
 rat_vertical[0] = 0
 rat_standing = [True]
@@ -68,6 +71,9 @@ rwalk_break = [0]
 img_rotation = 0
 img_flip = False
 rat_is_vertical = [False]
+rat_is_attacking = [False]
+rat_attacking_break = [0]
+rat_attacking_break[0] = 0
 
 rhealth =100
 
@@ -96,7 +102,7 @@ while running:
         screen.fill("light blue")
         screen.blit(actualbg_image, (0, 0))
 
-        loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_speed, rat_walk, rwalk_break, img_rotation, img_flip, rat_verticals, rat_vertical, rat_is_vertical)
+        loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_speed, rat_walk, rwalk_break, img_rotation, img_flip, rat_verticals, rat_vertical, rat_is_vertical, rat_attacks, rat_attack, rat_is_attacking, rat_attacking_break)
         loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break)
         # print(cat_walk)
         cat_keys = pygame.key.get_pressed()
@@ -206,10 +212,7 @@ while running:
             hitboxx = player_pos.x + hb -40
 
         if keys[pygame.K_LSHIFT]:
-            sprint = 2
-
-        if keys[pygame.K_k]:
-            rhealth -=10
+            sprint = 2                
 
         else:
             sprint = 1
@@ -220,7 +223,7 @@ while running:
         pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
         player_rect = rat_walk_surf.get_rect(center=(hitboxx+120, hitboxy+60))
-        pygame.draw.rect(screen, (0,0,255), player_rect)
+        # pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
             #player_rect.left = left_wall.right
