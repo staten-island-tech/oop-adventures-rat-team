@@ -220,7 +220,7 @@ while running:
         pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
         player_rect = rat_walk_surf.get_rect(center=(hitboxx+120, hitboxy+60))
-        # pygame.draw.rect(screen, (0,0,255), player_rect)
+        pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
             #player_rect.left = left_wall.right
