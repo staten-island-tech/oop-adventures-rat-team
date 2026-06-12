@@ -110,10 +110,12 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
         pygame.draw.rect(screen, (255,0,0), cat_rect)
 
         if cat_keys[pygame.K_k]:
-            print ('key work')
             if rattack_rect.colliderect(cat_rect):
                 chealth -= 10
                 print ('hi')
+        
+        if chealth == 0:
+            return 'game won'
 
         # cat_rect = my_image.get_rect(center=(hitboxx, hitboxy))
 
