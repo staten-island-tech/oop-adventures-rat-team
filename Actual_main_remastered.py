@@ -76,7 +76,8 @@ rat_attacking_break = [0]
 rat_attacking_break[0] = 0
 facing = "right"
 
-rhealth =100
+chealth = 50
+rhealth = 100
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
@@ -104,7 +105,7 @@ while running:
         screen.blit(actualbg_image, (0, 0))
 
         loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_speed, rat_walk, rwalk_break, img_rotation, img_flip, rat_verticals, rat_vertical, rat_is_vertical, rat_attacks, rat_attack, rat_is_attacking, rat_attacking_break)
-        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break)
+        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect)
         # print(cat_walk)
         cat_keys = pygame.key.get_pressed()
 
