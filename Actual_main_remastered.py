@@ -105,7 +105,6 @@ while running:
         screen.blit(actualbg_image, (0, 0))
 
         loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_speed, rat_walk, rwalk_break, img_rotation, img_flip, rat_verticals, rat_vertical, rat_is_vertical, rat_attacks, rat_attack, rat_is_attacking, rat_attacking_break)
-        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect)
         # print(cat_walk)
         cat_keys = pygame.key.get_pressed()
 
@@ -176,7 +175,7 @@ while running:
         #     if shop_button.collidepoint(event.pos):
         #         shop_open = True
                 
-        print (time-loadtime, adtime)
+       #  print (time-loadtime, adtime)
         if time - loadtime == adtime:
             pls_wait_30secs()
             loadtime = pygame.time.get_ticks() // 1000
@@ -190,6 +189,7 @@ while running:
             img_rotation = 90
             img_flip = False
             hitboxy = player_pos.y - hb +30
+            hitboxx = player_pos.x - 40
             facing = "up"
 
 
@@ -198,6 +198,7 @@ while running:
             img_rotation = 270
             img_flip = True
             hitboxy = player_pos.y + hb
+            hitboxx = player_pos.x - 40
             facing = "down"
             
 
@@ -233,7 +234,7 @@ while running:
                 rattack_rect.midbottom = (player_rect.centerx, player_rect.top - 20)
             if facing == "down":
                 rattack_rect.midtop = (player_rect.centerx, player_rect.bottom + 20)
-            # pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
+            pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
 
         else:
             sprint = 1
@@ -245,7 +246,7 @@ while running:
 
         player_rect = rat_walk_surf.get_rect(center=(hitboxx+100, hitboxy+60))
         rattack_rect = rat_walk_surf.get_rect()
-        # pygame.draw.rect(screen, (0,0,255), player_rect)
+        pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
             #player_rect.left = left_wall.right
@@ -266,6 +267,8 @@ while running:
             #player_rect.bottom = bottom_wall.top
             # player_pos.x = origx
             player_pos.y = origy
+        
+        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect)
 
 
 

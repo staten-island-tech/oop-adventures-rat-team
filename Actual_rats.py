@@ -48,10 +48,10 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
     if rat_visible == True and rat_is_vertical[0] == False and rat_standing[0] == False:
         rscreen.blit(rat_walk_animation, player_pos)
     if rat_standing[0] == True and rat_visible == True and rat_is_vertical[0] == True:
-        print("vertical stand")
+       #  print("vertical stand")
         rscreen.blit(vrat_stand_animation, player_pos)
     if rat_visible == True and rat_is_vertical[0] == True and rat_standing[0] == False:
-        print("vertical walk")
+        # print("vertical walk")
         rscreen.blit(vrat_walk_animation, player_pos)
 
     rwalk_break_check = False
@@ -99,7 +99,7 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
 #                    rat_stand_maybe = 1
             elif keys[pygame.K_s]:
                     img_flip = True
-                    print (rat_walk[0])
+                    # print (rat_walk[0])
                     if rwalk_break[0] == 0:
                         if rat_vertical[0] != 4:
                             rat_vertical[0] += 1
@@ -115,7 +115,7 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
 
             elif keys[pygame.K_w]:
                     img_flip = False
-                    print (rat_walk[0])
+                   #  print (rat_walk[0])
                     if rwalk_break[0] == 0:
                         if rat_vertical[0] != 4:
                             rat_vertical[0] += 1
