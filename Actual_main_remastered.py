@@ -234,7 +234,7 @@ while running:
                 rattack_rect.midbottom = (player_rect.centerx, player_rect.top - 20)
             if facing == "down":
                 rattack_rect.midtop = (player_rect.centerx, player_rect.bottom + 20)
-            pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
+            # pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
 
         else:
             sprint = 1
@@ -246,7 +246,7 @@ while running:
 
         player_rect = rat_walk_surf.get_rect(center=(hitboxx+100, hitboxy+60))
         rattack_rect = rat_walk_surf.get_rect()
-        pygame.draw.rect(screen, (0,0,255), player_rect)
+        # pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
             #player_rect.left = left_wall.right
