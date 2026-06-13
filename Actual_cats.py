@@ -1,5 +1,5 @@
 
-def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break):
+def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect):
     import pygame
     cat_stand_animation = pygame.image.load(f"cat_images\stand.png")
     cat_walk_animation = pygame.image.load(f"cat_images\{cat_walks[cat_walk[0]]}.png")
@@ -7,6 +7,9 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
     cat_walk_animation = pygame.transform.rotate(cat_walk_animation, cat_rotation[0])
     
     cat_keys = pygame.key.get_pressed()
+
+    chitboxx = cat_pos.x
+    chitboxy = cat_pos.y
 
     if cat_keys[pygame.K_e]:
         cat_visible = True
@@ -96,6 +99,23 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
                         else:
                             walk_break[0] += 1
                             walk_break_check = True
+
+
+        radius = 45
+        cat_walk_surf = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
+
+        pygame.draw.circle(cat_walk_surf, (0, 0, 255), (radius, radius), radius)
+
+        cat_rect = cat_walk_surf.get_rect(center=(chitboxx+110, chitboxy+120))
+        pygame.draw.rect(screen, (255,0,0), cat_rect)
+
+        if cat_keys[pygame.K_k]:
+            if rattack_rect.colliderect(cat_rect):
+                chealth -= 10
+                print ('hi')
+        
+        if chealth == 0:
+            return 'game won'
 
         # cat_rect = my_image.get_rect(center=(hitboxx, hitboxy))
 
