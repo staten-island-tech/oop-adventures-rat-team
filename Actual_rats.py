@@ -24,7 +24,7 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
     
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_w] or keys[pygame.K_s]:
+    if (keys[pygame.K_w] or keys[pygame.K_s]) and not (keys[pygame.K_a] or keys[pygame.K_d]):
         rat_is_vertical[0] = True
     elif keys[pygame.K_a] or keys[pygame.K_d]:
         rat_is_vertical[0] = False
@@ -97,66 +97,34 @@ def loadrat(rscreen, rat_visible, player_pos, rat_walks, rat_standing, rbreak_sp
                             rwalk_break_check = True
  #           else:
 #                    rat_stand_maybe = 1
-            elif keys[pygame.K_s]:
+            elif keys[pygame.K_s] and not keys[pygame.K_a] and not keys[pygame.K_d]:
                     img_flip = True
-                    # print (rat_walk[0])
-                    if keys[pygame.K_a] or keys[pygame.K_d]:
-                        if rwalk_break[0] == 0:
-                            if rat_walk[0] != 4:
-                                rat_walk[0] += 1
-                            else:
-                                rat_walk[0] = 0
-                            rat_vertical[0] = rat_walk[0]
-                        if rwalk_break_check == False:
-                            if rwalk_break[0] == 11:
-                                rwalk_break[0] = 0
-                                rwalk_break_check = True
-                            else:
-                                rwalk_break[0] += 1
-                                rwalk_break_check = True
+                    if rwalk_break[0] == 0:
+                        if rat_vertical[0] != 4:
+                            rat_vertical[0] += 1
                         else:
-                            if rwalk_break[0] == 0:
-                                if rat_vertical[0] != 4:
-                                    rat_vertical[0] += 1
-                                else:
-                                    rat_vertical[0] = 0
-                                rat_walk[0] = rat_vertical[0]
-                            if rwalk_break[0] == 11:
-                                rwalk_break[0] = 0
-                            else:
-                                if rwalk_break_check == False:
-                                    rwalk_break[0] += 1
-                                    rwalk_break_check = True
-            elif keys[pygame.K_w]:
+                            rat_vertical[0] = 0
+                        rat_walk[0] = rat_vertical[0]
+                    if rwalk_break[0] == 11:
+                        rwalk_break[0] = 0
+                    else:
+                        if rwalk_break_check == False:
+                            rwalk_break[0] += 1
+                            rwalk_break_check = True
+            elif keys[pygame.K_w] and not keys[pygame.K_a] and not keys[pygame.K_d]:
                     img_flip = True
-                    # print (rat_walk[0])
-                    if keys[pygame.K_a] or keys[pygame.K_d]:
-                        if rwalk_break[0] == 0:
-                            if rat_walk[0] != 4:
-                                rat_walk[0] += 1
-                            else:
-                                rat_walk[0] = 0
-                            rat_vertical[0] = rat_walk[0]
-                        if rwalk_break_check == False:
-                            if rwalk_break[0] == 11:
-                                rwalk_break[0] = 0
-                                rwalk_break_check = True
-                            else:
-                                rwalk_break[0] += 1
-                                rwalk_break_check = True
+                    if rwalk_break[0] == 0:
+                        if rat_vertical[0] != 4:
+                            rat_vertical[0] += 1
                         else:
-                            if rwalk_break[0] == 0:
-                                if rat_vertical[0] != 4:
-                                    rat_vertical[0] += 1
-                                else:
-                                    rat_vertical[0] = 0
-                                rat_walk[0] = rat_vertical[0]
-                            if rwalk_break[0] == 11:
-                                rwalk_break[0] = 0
-                            else:
-                                if rwalk_break_check == False:
-                                    rwalk_break[0] += 1
-                                    rwalk_break_check = True
+                            rat_vertical[0] = 0
+                        rat_walk[0] = rat_vertical[0]
+                    if rwalk_break[0] == 11:
+                        rwalk_break[0] = 0
+                    else:
+                        if rwalk_break_check == False:
+                            rwalk_break[0] += 1
+                            rwalk_break_check = True
         # cat_rect = my_image.get_rect(center=(hitboxx, hitboxy))
 
         # if cat_rect.colliderect(left_wall):
