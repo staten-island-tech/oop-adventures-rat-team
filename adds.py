@@ -12,10 +12,10 @@ def pls_wait_30secs():
     gamerun = False
     import random
     pygame.font.init()
-    ads = ['boogierat (1).gif', 'hoprat.gif', 'pushuprat (1).gif', 'rat-dancebackrooms (1).gif', 'wtf_rat.gif', 'ratating_rat_gif.gif', 'ratmunchy_gif (1).gif']
+    ads = [f"rat_ads\'boogierat (1).gif', 'hoprat.gif', 'pushuprat (1).gif', 'rat-dancebackrooms (1).gif', 'wtf_rat.gif', 'ratating_rat_gif.gif', 'ratmunchy_gif (1).gif', 'wtf_rat.gif'"]
     bg_image = pygame.image.load("starting_background.jpg")
     bg_image = pygame.transform.scale(bg_image, (1280, 720))
-    ad = ads[random.randint(0,6)]
+    ad = ads[random.randint(0,7)]
     ad_file = random.choice(ads)
     ad = gif_pygame.load(ad_file)
 
@@ -37,7 +37,7 @@ def pls_wait_30secs():
             ad.render(screen, (350, 100))
 
             title_font = pygame.font.SysFont('Arial', 40, bold = True) 
-            title = title_font.render('your game will resume shortly after this add...', True, (0,0,0))
+            title = title_font.render('your game will resume shortly after this ad...', True, (0,0,0))
             screen.blit(title, (250, 10))
 
             start_font = pygame.font.SysFont('Arial', 30, bold = True) 

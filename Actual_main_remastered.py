@@ -7,6 +7,7 @@ from Actual_rats import *
 from adds import pls_wait_30secs
 from Shop import shop
 import random
+from death_screen import *
  
 
 # print(Actual_cats.__file__)
@@ -31,7 +32,7 @@ sprint = 1
 gamerun = False
 actualbg_image = pygame.image.load("rat bg.png")
 
-adtime = random.randint(60,100)
+adtime = random.randint(40,60)
 loadtime = 0
 shop_open = False
 img_flip = False
@@ -84,7 +85,7 @@ last_attack_time = 0
 attack_cooldown = 1000
 last_attack_time = [0]
 
-cat_attack_cooldown = 4000 
+cat_attack_cooldown = 5000 
 cat_last_attack_time = [0]
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
@@ -184,6 +185,9 @@ while running:
 
         if rhealth[0] == 10:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 30, 10))
+        
+        if rhealth[0] <= 0:
+            death_screen(ckilled)
 
 
 
