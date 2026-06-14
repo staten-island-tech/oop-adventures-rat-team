@@ -1,18 +1,20 @@
 
-def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect):
+def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect, current_time, attack_cooldown, last_attack_time, ckilled, cat_facing, player_rect, rhealth, cat_attack_cooldown, cat_last_attack_time):
     import pygame
     cat_stand_animation = pygame.image.load(f"cat_images\stand.png")
     cat_walk_animation = pygame.image.load(f"cat_images\{cat_walks[cat_walk[0]]}.png")
     cat_stand_animation = pygame.transform.rotate(cat_stand_animation, cat_rotation[0])
     cat_walk_animation = pygame.transform.rotate(cat_walk_animation, cat_rotation[0])
-    
+    dx = player_pos.x - cat_pos.x
+    dy = player_pos.y - cat_pos.y
+
     cat_keys = pygame.key.get_pressed()
 
     chitboxx = cat_pos.x
     chitboxy = cat_pos.y
 
     if cat_keys[pygame.K_e]:
-        cat_visible = True
+        cat_visible[0] = True
 
     if cat_flip[0] == True:
         cat_stand_animation = pygame.transform.flip(cat_stand_animation, True, False)
@@ -20,11 +22,11 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
 
     if cat_standing[0] == True and cat_visible == True:
         screen.blit(cat_stand_animation, cat_pos)
-    elif cat_visible == True:
+    elif cat_visible[0] == True:
         screen.blit(cat_walk_animation, cat_pos)
 
     walk_break_check = False
-    if cat_visible == True:
+    if cat_visible[0] == True:
         if break_speed == False:
             break_speed = True
             player_pos.y += 1
@@ -109,13 +111,69 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
         cat_rect = cat_walk_surf.get_rect(center=(chitboxx+110, chitboxy+120))
         pygame.draw.rect(screen, (255,0,0), cat_rect)
 
+        cat_attack_rect = cat_walk_surf.get_rect()
+
         if cat_keys[pygame.K_k]:
+            # print(rattack_rect)
+            # print(cat_rect)
             if rattack_rect.colliderect(cat_rect):
-                chealth -= 10
-                print ('hi')
+                # print (current_time - last_attack_time[0])
+                if current_time - last_attack_time[0] >= attack_cooldown:
+                    chealth[0] -= 10
+                    last_attack_time[0] = current_time
+                    print ('hit')
+                    print (chealth)
+
+        if chealth[0] == 50:
+            chealth_bar = pygame.draw.rect(screen, (0, 0, 255), (60, 680, 150, 10))
+
+        if chealth[0] == 40:
+            chealth_bar = pygame.draw.rect(screen, (0, 0, 255), (60, 680, 120, 10))
+
+        if chealth[0] == 30:
+            chealth_bar = pygame.draw.rect(screen, (0, 0, 255), (60, 680, 90, 10))
         
-        if chealth == 0:
-            return 'game won'
+        if chealth[0] == 20:
+            chealth_bar = pygame.draw.rect(screen, (0, 0, 255), (60, 680, 60, 10))
+
+        if chealth[0] == 10:
+            chealth_bar = pygame.draw.rect(screen, (0, 0, 255), (60, 680, 30, 10))
+
+        if chealth[0] == 0:
+            print ('died')
+            cat_visible[0] = False
+            ckilled[0] += 1
+            print (ckilled)
+
+
+        if abs(dx) > abs(dy):
+            if dx > 0:
+                cat_facing[0] = "right"
+            else:
+                cat_facing[0] = "left"
+        else:
+            if dy > 0:
+                cat_facing[0] = "down"
+            else:
+                cat_facing[0] = "up"
+
+        if cat_facing[0] == "right":
+            cat_attack_rect.midleft = (cat_rect.right + 10, cat_rect.centery)
+
+        elif cat_facing[0] == "left":
+            cat_attack_rect.midright = (cat_rect.left - 10, cat_rect.centery)
+
+        elif cat_facing[0] == "up":
+            cat_attack_rect.midbottom = (cat_rect.centerx, cat_rect.top - 10)
+
+        elif cat_facing[0] == "down":
+            cat_attack_rect.midtop = (cat_rect.centerx, cat_rect.bottom + 10)
+        pygame.draw.rect(screen, 'yellow', cat_attack_rect)
+
+        if cat_attack_rect.colliderect(player_rect):
+            if current_time - cat_last_attack_time[0] >= cat_attack_cooldown:
+                rhealth[0] -= 10
+                cat_last_attack_time[0] = current_time
 
         # cat_rect = my_image.get_rect(center=(hitboxx, hitboxy))
 

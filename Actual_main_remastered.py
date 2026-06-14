@@ -49,7 +49,7 @@ cat_walk[0] = 0
 cat_standing = [True]
 cat_walking = False
 cat_animate = 1
-cat_visible = False
+cat_visible = [False]
 cat_stand_maybe = 1
 walk_break = [0]
 walk_break[0] = 0
@@ -76,16 +76,40 @@ rat_attacking_break = [0]
 rat_attacking_break[0] = 0
 facing = "right"
 
-chealth = 50
-rhealth = 100
+chealth = [50]
+rhealth = [100]
+ckilled = [0]
+
+last_attack_time = 0
+attack_cooldown = 1000
+last_attack_time = [0]
+
+cat_attack_cooldown = 4000 
+cat_last_attack_time = [0]
 
 player_pos = pygame.Vector2(screen.get_width() / 3, screen.get_height() / 2)
 cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
 
 
+origx = player_pos.x
+origy = player_pos.y
+hitboxx = player_pos.x
+hitboxy = player_pos.y
+hb = 60
+radius = 40
+rat_walk_surf = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
+pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
+rattack_rect = rat_walk_surf.get_rect()
+cat_facing = ['right']
+
+
 while running:
 
     time = pygame.time.get_ticks() // 1000
+    current_time = pygame.time.get_ticks()
+    origx = player_pos.x
+    origy = player_pos.y
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -109,7 +133,9 @@ while running:
         cat_keys = pygame.key.get_pressed()
 
         if cat_keys[pygame.K_e]:
-            cat_visible = True
+            cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
+            cat_visible = [True]
+            chealth = [50]
 
         left_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 60, 900))
         right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
@@ -129,42 +155,37 @@ while running:
         attack_text = attack_font.render('Press "K" to Attack', True, (255, 255, 255))
         screen.blit(attack_text, (1000, 10))
 
-        if rhealth == 100:
+        if rhealth[0] == 100:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 300, 10))
 
-        if rhealth == 90:
+        if rhealth[0] == 90:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 270, 10))
 
-        if rhealth == 80:
+        if rhealth[0] == 80:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 240, 10))
         
-        if rhealth == 70:
+        if rhealth[0] == 70:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 210, 10))
         
-        if rhealth == 60:
+        if rhealth[0] == 60:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 180, 10))
         
-        if rhealth == 50:
+        if rhealth[0] == 50:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 150, 10))
 
-        if rhealth == 40:
+        if rhealth[0] == 40:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 120, 10))
 
-        if rhealth == 30:
+        if rhealth[0] == 30:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 90, 10))
         
-        if rhealth == 20:
+        if rhealth[0] == 20:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 60, 10))
 
-        if rhealth == 10:
+        if rhealth[0] == 10:
             health_bar = pygame.draw.rect(screen, (255, 0, 0), (60, 10, 30, 10))
 
 
-        origx = player_pos.x
-        origy = player_pos.y
-        hitboxx = player_pos.x
-        hitboxy = player_pos.y
-        hb = 60
 
         # shop_font = pygame.font.SysFont('Arial', 30, bold = True) 
         # shop_button = pygame.draw.rect(screen, (100, 100, 255), (1150, 10, 100, 50))
@@ -206,6 +227,7 @@ while running:
             player_pos.x -= 600 * dt
             img_rotation = 0
             img_flip = True
+            hitboxy = player_pos.y
             hitboxx = player_pos.x - hb -20
             facing = "left"
             
@@ -214,6 +236,7 @@ while running:
             player_pos.x += 600 * dt
             img_rotation = 0
             img_flip = False
+            hitboxy = player_pos.y
             hitboxx = player_pos.x + hb -40
             facing = "right"
 
@@ -225,6 +248,8 @@ while running:
             if facing == "down":
                 hitboxy = player_pos.y + 40
 
+        player_rect = rat_walk_surf.get_rect(center=(hitboxx+100, hitboxy+60))
+
         if keys[pygame.K_k]:
             if facing == "right":
                 rattack_rect.midleft = (player_rect.right + 10, player_rect.centery)
@@ -234,19 +259,13 @@ while running:
                 rattack_rect.midbottom = (player_rect.centerx, player_rect.top - 20)
             if facing == "down":
                 rattack_rect.midtop = (player_rect.centerx, player_rect.bottom + 20)
-            # pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
+            pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
 
         else:
             sprint = 1
 
-        radius = 40
-        rat_walk_surf = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
 
-        pygame.draw.circle(rat_walk_surf, (0, 0, 255), (radius, radius), radius)
-
-        player_rect = rat_walk_surf.get_rect(center=(hitboxx+100, hitboxy+60))
-        rattack_rect = rat_walk_surf.get_rect()
-        # pygame.draw.rect(screen, (0,0,255), player_rect)
+        pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
             #player_rect.left = left_wall.right
@@ -268,7 +287,7 @@ while running:
             # player_pos.x = origx
             player_pos.y = origy
         
-        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect)
+        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect, current_time, attack_cooldown, last_attack_time, ckilled, cat_facing, player_rect, rhealth, cat_attack_cooldown, cat_last_attack_time)
 
 
 
