@@ -33,8 +33,8 @@ def starting_screen():
             dance_gif.render(screen, (780, 265))
 
             title_font = pygame.font.SysFont('Arial', 60, bold = True) 
-            title = title_font.render('Scurry Folk', True, (255,255,255))
-            screen.blit(title, (500, 10))
+            title = title_font.render('Fast and Furriest', True, (255,255,255))
+            screen.blit(title, (420, 10))
 
             start_font = pygame.font.SysFont('Arial', 30, bold = True) 
             start_button = pygame.draw.rect(screen, (100, 100, 255), (50, 200, 300, 100))
