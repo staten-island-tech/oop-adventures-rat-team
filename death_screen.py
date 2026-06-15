@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 # pygame setup
 pygame.init()
@@ -25,6 +26,7 @@ def death_screen(ckilled):
                 if start_button.collidepoint(event.pos):
                     print("Game Started!")
                     gamerun = True
+                    sys.exit()
                     return True
                 
         screen.fill("light blue")
@@ -33,7 +35,7 @@ def death_screen(ckilled):
         title_font = pygame.font.SysFont('Arial', 60, bold = True) 
         title = title_font.render('You died lolz', True, (0,0,0))
         count_font = pygame.font.SysFont('Arial', 40, bold = True) 
-        count = count_font.render(f"You killed {ckilled} rats", True, (0,0,0))
+        count = count_font.render(f"You killed {ckilled} cats", True, (0,0,0))
 
         start_font = pygame.font.SysFont('Arial', 30, bold = True) 
         start_button = pygame.draw.rect(screen, (100, 100, 255), (480, 480, 200, 60))

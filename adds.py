@@ -12,12 +12,14 @@ def pls_wait_30secs():
     gamerun = False
     import random
     pygame.font.init()
-    ads = [f"rat_ads\'boogierat (1).gif', 'hoprat.gif', 'pushuprat (1).gif', 'rat-dancebackrooms (1).gif', 'wtf_rat.gif', 'ratating_rat_gif.gif', 'ratmunchy_gif (1).gif', 'wtf_rat.gif'"]
+    ads = ['boogierat (1).gif', 'hoprat.gif', 'pushuprat (1).gif', 'rat-dancebackrooms (1).gif', 'wtf_rat.gif', 'ratating_rat_gif.gif', 'ratmunchy_gif (1).gif', 'wobbly-wiggly_rat.gif']
     bg_image = pygame.image.load("starting_background.jpg")
     bg_image = pygame.transform.scale(bg_image, (1280, 720))
-    ad = ads[random.randint(0,7)]
+    adnumber = random.randint(0,7)
+    print(adnumber)
+    ad = ads[adnumber]
     ad_file = random.choice(ads)
-    ad = gif_pygame.load(ad_file)
+    ad = gif_pygame.load(f"rat_ads/{ad_file}")
 
     while True:
 

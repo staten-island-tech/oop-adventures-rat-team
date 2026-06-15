@@ -109,7 +109,6 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
         pygame.draw.circle(cat_walk_surf, (0, 0, 255), (radius, radius), radius)
 
         cat_rect = cat_walk_surf.get_rect(center=(chitboxx+110, chitboxy+120))
-        pygame.draw.rect(screen, (255,0,0), cat_rect)
 
         cat_attack_rect = cat_walk_surf.get_rect()
 
@@ -168,12 +167,17 @@ def loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat
 
         elif cat_facing[0] == "down":
             cat_attack_rect.midtop = (cat_rect.centerx, cat_rect.bottom + 10)
-        pygame.draw.rect(screen, 'yellow', cat_attack_rect)
 
         if cat_attack_rect.colliderect(player_rect):
             if current_time - cat_last_attack_time[0] >= cat_attack_cooldown:
                 rhealth[0] -= 10
                 cat_last_attack_time[0] = current_time
+
+        if cat_keys[pygame.K_p]:
+            pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
+            pygame.draw.rect(screen, (255,0,0), cat_rect)
+            pygame.draw.rect(screen, 'yellow', cat_attack_rect)
+            pygame.draw.rect(screen, (0,0,255), player_rect)
 
         # cat_rect = my_image.get_rect(center=(hitboxx, hitboxy))
 

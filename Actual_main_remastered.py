@@ -2,7 +2,7 @@
 import pygame
 import random
 from loading_screen import starting_screen
-# from Actual_cats import loadcat
+from Actual_cats import loadcat
 from Actual_rats import *
 from Actual_cats_remastered import *
 from adds import pls_wait_30secs
@@ -14,15 +14,15 @@ from death_screen import *
 # print(Actual_cats.__file__)
 # print(dir(Actual_cats))
 
-class cat:
-    def __init__(self, health, power, speed):
-        self.health = health
-        self.power = power
-        self.speed = speed
-    def attack(self, rat):
-        rat.health -= self.power
+# class cat:
+#     def __init__(self, health, power, speed):
+#         self.health = health
+#         self.power = power
+#         self.speed = speed
+#     def attack(self, rat):
+#         rat.health -= self.power
 
-wild_cat = cat(random.randint(25, 45), random.randint(10 , 20), 10)
+# wild_cat = cat(random.randint(25, 45), random.randint(10 , 20), 10)
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
@@ -33,7 +33,7 @@ sprint = 1
 gamerun = False
 actualbg_image = pygame.image.load("rat bg.png")
 
-adtime = random.randint(40,60)
+adtime = random.randint(30,50)
 loadtime = 0
 shop_open = False
 img_flip = False
@@ -135,10 +135,9 @@ while running:
         cat_keys = pygame.key.get_pressed()
 
         if cat_keys[pygame.K_e]:
-            cat = cat(
-                screen.get_width() / 30,
-                screen.get_height() / 2
-            )
+            cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
+            cat_visible = [True]
+            chealth = [50]
 
         left_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 60, 900))
         right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
@@ -203,14 +202,15 @@ while running:
         #         shop_open = True
                 
        #  print (time-loadtime, adtime)
-        if time - loadtime == adtime:
+        keys = pygame.key.get_pressed()
+        if time - loadtime == adtime or keys[pygame.K_o]:
             pls_wait_30secs()
             loadtime = pygame.time.get_ticks() // 1000
             adtime = random.randint(60,100)
             print('check works')
         
 
-        keys = pygame.key.get_pressed()
+       
         if keys[pygame.K_w]:
             player_pos.y -= 600 * dt
             img_rotation = 90
@@ -265,13 +265,11 @@ while running:
                 rattack_rect.midbottom = (player_rect.centerx, player_rect.top - 20)
             if facing == "down":
                 rattack_rect.midtop = (player_rect.centerx, player_rect.bottom + 20)
-            pygame.draw.rect(screen, (0, 255, 0), rattack_rect)
 
         else:
             sprint = 1
 
 
-        pygame.draw.rect(screen, (0,0,255), player_rect)
 
         if player_rect.colliderect(left_wall):
             #player_rect.left = left_wall.right
@@ -293,7 +291,7 @@ while running:
             # player_pos.x = origx
             player_pos.y = origy
         
-        # loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect, current_time, attack_cooldown, last_attack_time, ckilled, cat_facing, player_rect, rhealth, cat_attack_cooldown, cat_last_attack_time)
+        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect, current_time, attack_cooldown, last_attack_time, ckilled, cat_facing, player_rect, rhealth, cat_attack_cooldown, cat_last_attack_time)
 
 
 
