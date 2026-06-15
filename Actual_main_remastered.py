@@ -2,8 +2,9 @@
 import pygame
 import random
 from loading_screen import starting_screen
-from Actual_cats import loadcat
+# from Actual_cats import loadcat
 from Actual_rats import *
+from Actual_cats_remastered import *
 from adds import pls_wait_30secs
 from Shop import shop
 import random
@@ -134,9 +135,10 @@ while running:
         cat_keys = pygame.key.get_pressed()
 
         if cat_keys[pygame.K_e]:
-            cat_pos = pygame.Vector2(screen.get_width() / 30, screen.get_height() / 2)
-            cat_visible = [True]
-            chealth = [50]
+            cat = cat(
+                screen.get_width() / 30,
+                screen.get_height() / 2
+            )
 
         left_wall = pygame.draw.rect(screen, (0, 0, 0), (0, 0, 60, 900))
         right_wall = pygame.draw.rect(screen, (0, 0, 0), (1220, 0, 60, 900))
@@ -291,7 +293,7 @@ while running:
             # player_pos.x = origx
             player_pos.y = origy
         
-        loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect, current_time, attack_cooldown, last_attack_time, ckilled, cat_facing, player_rect, rhealth, cat_attack_cooldown, cat_last_attack_time)
+        # loadcat(screen, cat_visible, cat_pos, cat_walks, cat_walk, cat_rotation, cat_standing, cat_flip, player_pos, break_speed, walk_break, chealth, rattack_rect, current_time, attack_cooldown, last_attack_time, ckilled, cat_facing, player_rect, rhealth, cat_attack_cooldown, cat_last_attack_time)
 
 
 
